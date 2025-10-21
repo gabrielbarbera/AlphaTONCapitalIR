@@ -151,10 +151,8 @@ a {
 }
 
 a:hover {
-  color: var(--primary);
+  color: #a8beea;
 }
-
-/* ===== BASE BUTTON STYLES ===== */
 button {
   font-family: inherit;
   font-size: inherit;
@@ -1600,6 +1598,118 @@ p {
   font-size: 3rem;
   line-height: 1;
 }
+
+/* Width Utilities */
+.w-3 {
+  width: 0.75rem;
+}
+.w-4 {
+  width: 1rem;
+}
+.w-5 {
+  width: 1.25rem;
+}
+.w-6 {
+  width: 1.5rem;
+}
+.w-7 {
+  width: 1.75rem;
+}
+.w-8 {
+  width: 2rem;
+}
+.w-12 {
+  width: 3rem;
+}
+.w-16 {
+  width: 4rem;
+}
+.w-20 {
+  width: 5rem;
+}
+.w-24 {
+  width: 6rem;
+}
+.w-32 {
+  width: 8rem;
+}
+.w-40 {
+  width: 10rem;
+}
+.w-48 {
+  width: 12rem;
+}
+.w-56 {
+  width: 14rem;
+}
+.w-64 {
+  width: 16rem;
+}
+.w-72 {
+  width: 18rem;
+}
+.w-80 {
+  width: 20rem;
+}
+.w-96 {
+  width: 24rem;
+}
+
+/* Height Utilities */
+.h-3 {
+  height: 0.75rem;
+}
+.h-4 {
+  height: 1rem;
+}
+.h-5 {
+  height: 1.25rem;
+}
+.h-6 {
+  height: 1.5rem;
+}
+.h-7 {
+  height: 1.75rem;
+}
+.h-8 {
+  height: 2rem;
+}
+.h-12 {
+  height: 3rem;
+}
+.h-16 {
+  height: 4rem;
+}
+.h-20 {
+  height: 5rem;
+}
+.h-24 {
+  height: 6rem;
+}
+.h-32 {
+  height: 8rem;
+}
+.h-40 {
+  height: 10rem;
+}
+.h-48 {
+  height: 12rem;
+}
+.h-56 {
+  height: 14rem;
+}
+.h-64 {
+  height: 16rem;
+}
+.h-72 {
+  height: 18rem;
+}
+.h-80 {
+  height: 20rem;
+}
+.h-96 {
+  height: 24rem;
+}
 .font-light {
   font-weight: 300;
 }
@@ -1764,6 +1874,12 @@ p {
 .bg-alphaton-primary {
   --tw-bg-opacity: 1;
   background-color: rgb(62 123 250 / var(--tw-bg-opacity, 1));
+  transition: box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bg-alphaton-primary:hover {
+  box-shadow: 0 0 20px rgba(62, 123, 250, 0.6), 0 0 40px rgba(62, 123, 250, 0.4);
+  transition: box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .bg-alphaton-dark {
   background-color: #0a0a0a;
@@ -6395,7 +6511,77 @@ textarea {
   animation-delay: 0.4s;
 }
 
+/* Glassmorphism Pagination Styles */
+.glassmorphism-pagination {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glassmorphism-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glassmorphism-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.glassmorphism-btn:hover::before {
+  left: 100%;
+}
+
+.glassmorphism-btn:active {
+  transform: scale(0.95);
+}
+
+.glassmorphism-btn:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Active page button special styling */
+.glassmorphism-btn.bg-alphaton-primary\/30 {
+  background: rgba(59, 130, 246, 0.3) !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive pagination */
+@media (max-width: 640px) {
+  .glassmorphism-pagination {
+    padding: 1rem;
+  }
+
+  .glassmorphism-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .glassmorphism-pagination .flex {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
 /* ===== BLUE BLOB BACKGROUND ANIMATION ===== */
+/* Blob Animation Styles */
 .blob-background {
   position: fixed;
   top: 50%;

@@ -1,94 +1,113 @@
 // Global Navigation Component
 class NavbarComponent {
   constructor() {
-    this.navbarHTML = `
-            <nav class="bg-black/20 backdrop-blur-lg border-b border-white/10 fixed top-0 left-0 right-0 z-50" role="navigation" aria-label="Main navigation">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between items-center h-16">
-                        <!-- Logo -->
-                        <div class="flex-shrink-0">
-                            <a href="index.html" class="flex items-center group">
-                                <img src="assets/img/Primary Logo Horizontal White.svg" alt="AlphaTON Capital" class="h-8 w-auto transition-transform duration-200 group-hover:scale-105">
-                            </a>
-                        </div>
+    this.htmlFile = "components/header.html";
+    this.fallbackHTML = `
+      <nav class="bg-black/20 backdrop-blur-lg border-b border-white/10 fixed top-0 left-0 right-0 z-50" role="navigation" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+              <a href="index.html" class="flex items-center group">
+                <img src="assets/img/Primary Logo Horizontal White.svg" alt="AlphaTON Capital" class="h-8 w-auto transition-transform duration-200 group-hover:scale-105">
+              </a>
+            </div>
 
-                        <!-- Desktop Navigation -->
-                        <div class="hidden md:block">
-                            <div class="ml-3 flex items-center space-x-3">
-                                <a href="index.html" class="nav-link text-white hover:text-alphaton-primary px-1 py-0.5 text-sm font-medium transition-colors duration-200">
-                                    Home
-                                </a>
-                                <a href="news.html" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
-                                    News
-                                </a>
-                                <a href="https://www.sec.gov/edgar/browse/?CIK=1095435&owner=exclude" target="_blank" rel="noopener noreferrer" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
-                                    SEC Fillings
-                                </a>
-                                <a href="governance.html" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
-                                    Corporate Governance
-                                </a>
-                                <a href="team.html" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
-                                    Team
-                                </a>
-                                <a href="faqs.html" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
-                                    FAQs
-                                </a>
-                                <a href="contact.html" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
-                                    Contact
-                                </a>
-                            </div>
-                        </div>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:block">
+              <div class="ml-3 flex items-center space-x-3">
+                <a href="index.html" class="nav-link text-white hover:text-alphaton-primary px-1 py-0.5 text-sm font-medium transition-colors duration-200">
+                  Home
+                </a>
+                <a href="news.html" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
+                  News
+                </a>
+                <a href="https://www.sec.gov/edgar/browse/?CIK=1095435&owner=exclude" target="_blank" rel="noopener noreferrer" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
+                  SEC Fillings
+                </a>
+                <a href="governance.html" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
+                  Corporate Governance
+                </a>
+                <a href="team.html" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
+                  Team
+                </a>
+                <a href="faqs.html" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
+                  FAQs
+                </a>
+                <a href="contact.html" class="nav-link text-gray-300 hover:text-alphaton-primary px-2 py-0.5 text-sm font-medium transition-colors duration-200">
+                  Contact
+                </a>
+              </div>
+            </div>
 
-                        <!-- Mobile menu button -->
-                        <div class="md:hidden">
-                            <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-colors duration-200" aria-expanded="false" aria-label="Toggle main menu">
-                                <!-- Hamburger icon -->
-                                <svg id="menu-icon" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                                <!-- Close icon -->
-                                <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+              <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-colors duration-200" aria-expanded="false" aria-label="Toggle main menu">
+                <!-- Hamburger icon -->
+                <svg id="menu-icon" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <!-- Close icon -->
+                <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
 
-                <!-- Mobile menu -->
-                <div id="mobile-menu" class="md:hidden hidden">
-                    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/30 backdrop-blur-lg border-t border-white/10">
-                        <a href="index.html" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
-                            Home
-                        </a>
-                        <a href="news.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
-                            News
-                        </a>
-                        <a href="https://www.sec.gov/edgar/browse/?CIK=1095435&owner=exclude" target="_blank" rel="noopener noreferrer" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
-                            SEC Fillings
-                        </a>
-                        <a href="governance.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
-                            Corporate Governance
-                        </a>
-                        <a href="team.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
-                            Team
-                        </a>
-                        <a href="faqs.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
-                            FAQs
-                        </a>
-                        <a href="contact.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
-                            Contact
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        `;
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+          <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/30 backdrop-blur-lg border-t border-white/10">
+            <a href="index.html" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
+              Home
+            </a>
+            <a href="news.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
+              News
+            </a>
+            <a href="https://www.sec.gov/edgar/browse/?CIK=1095435&owner=exclude" target="_blank" rel="noopener noreferrer" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
+              SEC Fillings
+            </a>
+            <a href="governance.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
+              Corporate Governance
+            </a>
+            <a href="team.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
+              Team
+            </a>
+            <a href="faqs.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
+              FAQs
+            </a>
+            <a href="contact.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-alphaton-primary transition-colors duration-200">
+              Contact
+            </a>
+          </div>
+        </div>
+      </nav>
+    `;
   }
 
-  render(containerId = "navbar-container") {
+  async loadHTML() {
+    try {
+      const response = await fetch(this.htmlFile);
+      if (!response.ok) {
+        throw new Error(`Failed to load ${this.htmlFile}: ${response.status}`);
+      }
+      return await response.text();
+    } catch (error) {
+      console.warn(
+        "Using fallback navbar HTML due to CORS restrictions in development"
+      );
+      return this.fallbackHTML;
+    }
+  }
+
+  async render(containerId = "navbar-container") {
     const container = document.getElementById(containerId);
-    if (container) {
-      container.innerHTML = this.navbarHTML;
+    if (!container) return;
+
+    const html = await this.loadHTML();
+    if (html) {
+      container.innerHTML = html;
       this.setActivePage();
       this.initMobileMenu();
     }
@@ -185,111 +204,135 @@ class NavbarComponent {
 // Global Footer Component
 class FooterComponent {
   constructor() {
-    this.footerHTML = `
-            <footer class="bg-alphaton-dark border-t border-white/10 py-20" id="newsletter">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <!-- Main Footer Content -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-                        <!-- Newsletter Section -->
-                        <div class="space-y-6 text-center">
-                            <div>
-                                <h4 class="text-2xl font-bold text-white mb-4">Newsletter</h4>
-                                <p class="text-gray-300 text-lg leading-relaxed">Sign up to receive AlphaTON Capital news, press releases, and SEC filing alerts.</p>
-                            </div>
-                            <form class="newsletter-form space-y-5">
-                                <div>
-                                    <label for="newsletter-email" class="sr-only">Email Address</label>
-                                    <input type="email" id="newsletter-email" name="email" class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-alphaton-primary focus:border-transparent transition-all duration-200 text-lg text-center" placeholder="Enter your email" required>
-                                </div>
-                                <button type="submit" class="w-full bg-alphaton-primary hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-200 text-lg hover:transform hover:scale-105">
-                                    Subscribe
-                                </button>
-                            </form>
-                            <p class="text-sm text-gray-400 leading-relaxed">By subscribing, you agree to receive investor communications from AlphaTON Capital. You can unsubscribe at any time.</p>
-                        </div>
-                        
-                        <!-- Investor Relations Section -->
-                        <div class="space-y-6 text-center">
-                            <div>
-                                <h4 class="text-2xl font-bold text-white mb-4">Investor Relations</h4>
-                            </div>
-                            <div class="space-y-4">
-                                <p class="text-white font-semibold text-lg">AlphaTON Capital Corp.</p>
-                                <div class="space-y-2">
-                                    <p class="text-gray-300">c/o Investor Relations</p>
-                                    <p class="text-gray-300">New York, NY, USA</p>
-                                </div>
-                                <p class="text-gray-300">
-                                    <a href="mailto:ir@alphatoncapital.com" class="text-alphaton-primary hover:text-blue-400 transition-colors duration-200 text-lg font-medium">
-                                        ir@alphatoncapital.com
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Quick Links Section -->
-                        <div class="space-y-6 text-center">
-                            <div>
-                                <h4 class="text-2xl font-bold text-white mb-4">Quick Links</h4>
-                            </div>
-                            <div class="space-y-3">
-                                <a href="contact.html" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">Contact IR</a>
-                                <a href="https://www.sec.gov/edgar/browse/?CIK=1095435&owner=exclude" target="_blank" rel="noopener noreferrer" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">SEC Filings</a>
-                                <a href="assets/AlphaTON Capital Branding Guide.pdf" target="_blank" rel="noopener noreferrer" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">Press Kit</a>
-                                <a href="privacy.html" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">Privacy Policy</a>
-                                <a href="terms.html" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">Terms of Use</a>
-                                <a href="safe-harbor.html" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">Safe Harbor Statement</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Safe Harbor Statement -->
-                    <div class="bg-white/5 rounded-2xl p-8 border border-white/10 mb-12">
-                        <h4 class="text-xl font-semibold text-white mb-4">Safe Harbor Statement</h4>
-                        <p class="text-gray-300 leading-relaxed">
-                            This website may contain forward-looking statements regarding AlphaTON Capital Corp.'s future performance. These statements involve risks and uncertainties, and actual results may differ materially. Please refer to our SEC filings for risk factors.
-                        </p>
-                    </div>
-                    
-                    <!-- Footer Bottom -->
-                    <div class="border-t border-white/10 pt-12">
-                        <div class="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
-                            <div class="flex items-center space-x-4">
-                                <img src="assets/img/Wordmark White.svg" alt="AlphaTON Capital" class="h-8 w-auto">
-                                <p class="text-gray-400 text-lg">&copy; 2025 AlphaTON Capital Corp. All rights reserved.</p>
-                            </div>
-                            
-                            <div class="flex space-x-8">
-                                <a href="https://x.com/AlphaTONCapital" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-alphaton-primary transition-all duration-200 hover:scale-110">
-                                    <span class="sr-only">X (Twitter)</span>
-                                    <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L8.084 4.126H6.117z"/>
-                                    </svg>
-                                </a>
-                                <a href="https://t.me/AlphaTONCapital" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-alphaton-primary transition-all duration-200 hover:scale-110">
-                                    <span class="sr-only">Telegram</span>
-                                    <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                                    </svg>
-                                </a>
-                                <a href="https://www.linkedin.com/company/alphaton-capital/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-alphaton-primary transition-all duration-200 hover:scale-110">
-                                    <span class="sr-only">LinkedIn</span>
-                                    <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+    this.htmlFile = "components/footer.html";
+    this.fallbackHTML = `
+      <footer class="bg-alphaton-dark border-t border-white/10 py-20" id="newsletter">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Main Footer Content -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            <!-- Newsletter Section -->
+            <div class="space-y-6 text-center">
+              <div>
+                <h4 class="text-2xl font-bold text-white mb-4">Newsletter</h4>
+                <p class="text-gray-300 text-lg leading-relaxed">Sign up to receive AlphaTON Capital news, press releases, and SEC filing alerts.</p>
+              </div>
+              <form class="newsletter-form space-y-5">
+                <div>
+                  <label for="newsletter-email" class="sr-only">Email Address</label>
+                  <input type="email" id="newsletter-email" name="email" class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-alphaton-primary focus:border-transparent transition-all duration-200 text-lg text-center" placeholder="Enter your email" required>
                 </div>
-            </footer>
-        `;
+                <button type="submit" class="w-full bg-alphaton-primary hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-200 text-lg hover:transform hover:scale-105">
+                  Subscribe
+                </button>
+              </form>
+              <p class="text-sm text-gray-400 leading-relaxed">By subscribing, you agree to receive investor communications from AlphaTON Capital. You can unsubscribe at any time.</p>
+            </div>
+            
+            <!-- Investor Relations Section -->
+            <div class="space-y-6 text-center">
+              <div>
+                <h4 class="text-2xl font-bold text-white mb-4">Investor Relations</h4>
+              </div>
+              <div class="space-y-4">
+                <p class="text-white font-semibold text-lg">AlphaTON Capital Corp.</p>
+                <div class="space-y-2">
+                  <p class="text-gray-300">c/o Investor Relations</p>
+                  <p class="text-gray-300">New York, NY, USA</p>
+                </div>
+                <p class="text-gray-300">
+                  <a href="mailto:ir@alphatoncapital.com" class="text-alphaton-primary hover:text-blue-400 transition-colors duration-200 text-lg font-medium">
+                    ir@alphatoncapital.com
+                  </a>
+                </p>
+              </div>
+            </div>
+            
+            <!-- Quick Links Section -->
+            <div class="space-y-6 text-center">
+              <div>
+                <h4 class="text-2xl font-bold text-white mb-4">Quick Links</h4>
+              </div>
+              <div class="space-y-3">
+                <a href="contact.html" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">Contact IR</a>
+                <a href="https://www.sec.gov/edgar/browse/?CIK=1095435&owner=exclude" target="_blank" rel="noopener noreferrer" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">SEC Filings</a>
+                <a href="assets/pdf/AlphaTON Capital Branding Guide.pdf" target="_blank" rel="noopener noreferrer" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">Press Kit</a>
+                <a href="privacy.html" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">Privacy Policy</a>
+                <a href="terms.html" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">Terms of Use</a>
+                <a href="safe-harbor.html" class="block text-gray-300 hover:text-alphaton-primary transition-colors duration-200 text-lg py-1">Safe Harbor Statement</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Safe Harbor Statement -->
+          <div class="bg-white/5 rounded-2xl p-8 border border-white/10 mb-12">
+            <h4 class="text-xl font-semibold text-white mb-4">Safe Harbor Statement</h4>
+            <p class="text-gray-300 leading-relaxed">
+              This website may contain forward-looking statements regarding AlphaTON Capital Corp.'s future performance. These statements involve risks and uncertainties, and actual results may differ materially. Please refer to our SEC filings for risk factors.
+            </p>
+          </div>
+          
+          <!-- Footer Bottom -->
+          <div class="border-t border-white/10 pt-12">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
+              <div class="flex items-center space-x-4">
+                <img src="assets/img/Wordmark White.svg" alt="AlphaTON Capital" class="h-8 w-auto">
+                <p class="text-gray-400 text-lg">&copy; 2025 AlphaTON Capital Corp. All rights reserved.</p>
+              </div>
+              
+              <div class="flex space-x-8">
+                <a href="https://x.com/AlphaTONCapital" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-alphaton-primary transition-all duration-200 hover:scale-110">
+                  <span class="sr-only">X (Twitter)</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7">
+                    <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                    <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                  </svg>
+                </a>
+                <a href="https://t.me/AlphaTONCapital" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-alphaton-primary transition-all duration-200 hover:scale-110">
+                  <span class="sr-only">Telegram</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7">
+                    <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+                  </svg>
+                </a>
+                <a href="https://www.linkedin.com/company/alphaton-capital/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-alphaton-primary transition-all duration-200 hover:scale-110">
+                  <span class="sr-only">LinkedIn</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7">
+                    <path d="M8 11v5" />
+                    <path d="M8 8v.01" />
+                    <path d="M12 16v-5" />
+                    <path d="M16 16v-3a2 2 0 1 0 -4 0" />
+                    <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    `;
   }
 
-  render(containerId = "footer-container") {
+  async loadHTML() {
+    try {
+      const response = await fetch(this.htmlFile);
+      if (!response.ok) {
+        throw new Error(`Failed to load ${this.htmlFile}: ${response.status}`);
+      }
+      return await response.text();
+    } catch (error) {
+      console.warn(
+        "Using fallback footer HTML due to CORS restrictions in development"
+      );
+      return this.fallbackHTML;
+    }
+  }
+
+  async render(containerId = "footer-container") {
     const container = document.getElementById(containerId);
-    if (container) {
-      container.innerHTML = this.footerHTML;
+    if (!container) return;
+
+    const html = await this.loadHTML();
+    if (html) {
+      container.innerHTML = html;
       this.initNewsletterForm();
     }
   }
@@ -564,31 +607,163 @@ class RSSFeedComponent {
   determineCategory(content) {
     const lowerContent = content.toLowerCase();
 
+    // AI & Technology
+    if (
+      lowerContent.includes("ai") ||
+      lowerContent.includes("artificial intelligence") ||
+      lowerContent.includes("machine learning") ||
+      lowerContent.includes("technology") ||
+      lowerContent.includes("digital transformation") ||
+      lowerContent.includes("blockchain") ||
+      lowerContent.includes("crypto") ||
+      lowerContent.includes("tokenization") ||
+      lowerContent.includes("defi") ||
+      lowerContent.includes("web3")
+    ) {
+      return "Technology";
+    }
+
+    // Partnerships & Collaborations
     if (
       lowerContent.includes("partnership") ||
-      lowerContent.includes("collaboration")
+      lowerContent.includes("collaboration") ||
+      lowerContent.includes("alliance") ||
+      lowerContent.includes("joint venture") ||
+      lowerContent.includes("strategic agreement") ||
+      lowerContent.includes("mou") ||
+      lowerContent.includes("memorandum of understanding") ||
+      lowerContent.includes("cooperation")
     ) {
       return "Partnership";
-    } else if (
+    }
+
+    // Financial & Investment Activities
+    if (
       lowerContent.includes("treasury") ||
       lowerContent.includes("investment") ||
-      lowerContent.includes("acquisition")
+      lowerContent.includes("acquisition") ||
+      lowerContent.includes("purchase") ||
+      lowerContent.includes("funding") ||
+      lowerContent.includes("financing") ||
+      lowerContent.includes("capital") ||
+      lowerContent.includes("equity") ||
+      lowerContent.includes("debt") ||
+      lowerContent.includes("revenue") ||
+      lowerContent.includes("earnings") ||
+      lowerContent.includes("financial results")
     ) {
-      return "Strategic Initiative";
-    } else if (
-      lowerContent.includes("speak") ||
-      lowerContent.includes("summit") ||
-      lowerContent.includes("conference")
-    ) {
-      return "Press Release";
-    } else if (
+      return "Financial";
+    }
+
+    // Market & Trading
+    if (
       lowerContent.includes("price") ||
       lowerContent.includes("market") ||
-      lowerContent.includes("trading")
+      lowerContent.includes("trading") ||
+      lowerContent.includes("stock") ||
+      lowerContent.includes("nasdaq") ||
+      lowerContent.includes("share") ||
+      lowerContent.includes("valuation") ||
+      lowerContent.includes("bullish") ||
+      lowerContent.includes("bearish") ||
+      lowerContent.includes("volatility")
     ) {
       return "Market Analysis";
     }
 
+    // Speaking & Events
+    if (
+      lowerContent.includes("speak") ||
+      lowerContent.includes("summit") ||
+      lowerContent.includes("conference") ||
+      lowerContent.includes("event") ||
+      lowerContent.includes("presentation") ||
+      lowerContent.includes("keynote") ||
+      lowerContent.includes("panel") ||
+      lowerContent.includes("webinar") ||
+      lowerContent.includes("vatican") ||
+      lowerContent.includes("world changers")
+    ) {
+      return "Events";
+    }
+
+    // Healthcare & Biotech
+    if (
+      lowerContent.includes("healthcare") ||
+      lowerContent.includes("biotech") ||
+      lowerContent.includes("cancer") ||
+      lowerContent.includes("therapeutics") ||
+      lowerContent.includes("clinical") ||
+      lowerContent.includes("drug") ||
+      lowerContent.includes("treatment") ||
+      lowerContent.includes("medical") ||
+      lowerContent.includes("pharmaceutical") ||
+      lowerContent.includes("oncology")
+    ) {
+      return "Healthcare";
+    }
+
+    // Corporate Governance & Compliance
+    if (
+      lowerContent.includes("governance") ||
+      lowerContent.includes("compliance") ||
+      lowerContent.includes("regulatory") ||
+      lowerContent.includes("sec") ||
+      lowerContent.includes("filing") ||
+      lowerContent.includes("disclosure") ||
+      lowerContent.includes("board") ||
+      lowerContent.includes("executive") ||
+      lowerContent.includes("leadership") ||
+      lowerContent.includes("corporate")
+    ) {
+      return "Corporate";
+    }
+
+    // Strategic Initiatives & Business Development
+    if (
+      lowerContent.includes("strategic") ||
+      lowerContent.includes("initiative") ||
+      lowerContent.includes("expansion") ||
+      lowerContent.includes("growth") ||
+      lowerContent.includes("development") ||
+      lowerContent.includes("ecosystem") ||
+      lowerContent.includes("platform") ||
+      lowerContent.includes("infrastructure") ||
+      lowerContent.includes("innovation") ||
+      lowerContent.includes("roadmap")
+    ) {
+      return "Strategic Initiative";
+    }
+
+    // Awards & Recognition
+    if (
+      lowerContent.includes("award") ||
+      lowerContent.includes("recognition") ||
+      lowerContent.includes("congratulations") ||
+      lowerContent.includes("achievement") ||
+      lowerContent.includes("milestone") ||
+      lowerContent.includes("honor") ||
+      lowerContent.includes("distinction") ||
+      lowerContent.includes("accolade")
+    ) {
+      return "Recognition";
+    }
+
+    // Telegram & TON Ecosystem
+    if (
+      lowerContent.includes("telegram") ||
+      lowerContent.includes("ton") ||
+      lowerContent.includes("toncoin") ||
+      lowerContent.includes("mini app") ||
+      lowerContent.includes("ecosystem") ||
+      lowerContent.includes("validator") ||
+      lowerContent.includes("staking") ||
+      lowerContent.includes("network")
+    ) {
+      return "TON Ecosystem";
+    }
+
+    // Default fallback
     return "Press Release";
   }
 
@@ -613,6 +788,19 @@ class RSSFeedComponent {
     return decodedDescription.length > 200
       ? decodedDescription.substring(0, 200) + "..."
       : decodedDescription;
+  }
+
+  formatDate(dateString) {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    } catch (error) {
+      return "Recent";
+    }
   }
 
   displayItems() {
@@ -651,15 +839,12 @@ class RSSFeedComponent {
         </div>
         <div class="flex items-center justify-between pt-4 border-t border-white/10">
           <a href="${item.link}" target="_blank" rel="noopener noreferrer" 
-             class="read-more-btn group inline-flex items-center space-x-2 bg-alphaton-primary/10 hover:bg-alphaton-primary/20 text-alphaton-primary hover:text-white px-4 py-2 rounded-lg font-semibold transition-all duration-200 border border-alphaton-primary/20 hover:border-alphaton-primary/40">
+             class="read-more-btn group inline-flex items-center space-x-1.5 bg-alphaton-primary/10 hover:bg-alphaton-primary/20 text-alphaton-primary hover:text-white px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 border border-alphaton-primary/20 hover:border-alphaton-primary/40">
             <span>Read More</span>
             <svg class="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
             </svg>
           </a>
-          <div class="text-xs text-gray-500">
-            ${item.category}
-          </div>
         </div>
       </div>
     `
@@ -673,57 +858,136 @@ class RSSFeedComponent {
     if (!this.loadMoreBtn) return;
 
     const totalItems = this.allItems.length;
-    const displayedItems = (this.currentPage + 1) * this.itemsPerPage;
-    const remainingItems = totalItems - displayedItems;
+    const totalPages = Math.ceil(totalItems / this.itemsPerPage);
+    const currentPage = this.currentPage + 1;
 
-    if (displayedItems >= totalItems) {
+    if (totalPages <= 1) {
       this.loadMoreBtn.style.display = "none";
-    } else {
-      this.loadMoreBtn.style.display = "inline-block";
-      this.loadMoreBtn.innerHTML = `
-        <span class="flex items-center space-x-2">
-          <span>Load More News</span>
-          <span class="bg-alphaton-primary/20 text-alphaton-primary px-2 py-1 rounded-full text-xs font-semibold">
-            ${remainingItems} more
-          </span>
-        </span>
-      `;
+      return;
     }
+
+    this.loadMoreBtn.style.display = "block";
+    this.loadMoreBtn.innerHTML = this.createGlassmorphismPagination(
+      currentPage,
+      totalPages,
+      totalItems
+    );
   }
 
-  loadMore() {
-    this.currentPage++;
+  createGlassmorphismPagination(currentPage, totalPages, totalItems) {
+    const startItem = (currentPage - 1) * this.itemsPerPage + 1;
+    const endItem = Math.min(currentPage * this.itemsPerPage, totalItems);
 
-    // Show loading state on button
-    if (this.loadMoreBtn) {
-      this.loadMoreBtn.disabled = true;
-      this.loadMoreBtn.innerHTML = `
-        <span class="flex items-center space-x-2">
-          <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-          <span>Loading...</span>
-        </span>
+    let paginationHTML = `
+      <div class="glassmorphism-pagination bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-xl">
+        <div class="flex flex-col items-center space-y-4">
+          <!-- Page Info -->
+          <div class="text-center">
+            <p class="text-white/80 text-sm font-medium">
+              Showing ${startItem}-${endItem} of ${totalItems} articles
+            </p>
+          </div>
+          
+          <!-- Pagination Controls -->
+          <div class="flex items-center space-x-2">
+    `;
+
+    // Previous Button
+    if (currentPage > 1) {
+      paginationHTML += `
+        <button onclick="rssFeed.goToPage(${currentPage - 1})" 
+                class="glassmorphism-btn bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white px-4 py-2 rounded-xl font-medium transition-all duration-200 hover:scale-105 backdrop-blur-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
       `;
     }
 
-    // Simulate loading delay for better UX
-    setTimeout(() => {
-      this.displayItems();
-      this.updateLoadMoreButton();
+    // Page Numbers
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
-      if (this.loadMoreBtn) {
-        this.loadMoreBtn.disabled = false;
-      }
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
 
-      // Smooth scroll to show new content
-      const newItems = this.feedContainer.querySelectorAll(".news-item");
-      if (newItems.length > 0) {
-        const lastNewItem = newItems[newItems.length - 1];
-        lastNewItem.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-        });
+    // First page + ellipsis
+    if (startPage > 1) {
+      paginationHTML += `
+        <button onclick="rssFeed.goToPage(1)" 
+                class="glassmorphism-btn bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white px-3 py-2 rounded-xl font-medium transition-all duration-200 hover:scale-105 backdrop-blur-sm">
+          1
+        </button>
+      `;
+      if (startPage > 2) {
+        paginationHTML += `<span class="text-white/40 px-2">...</span>`;
       }
-    }, 500);
+    }
+
+    // Page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      const isActive = i === currentPage;
+      paginationHTML += `
+        <button onclick="rssFeed.goToPage(${i})" 
+                class="glassmorphism-btn ${
+                  isActive
+                    ? "bg-alphaton-primary/30 border-alphaton-primary/50 text-white"
+                    : "bg-white/10 hover:bg-white/20 border-white/20 hover:border-white/30 text-white/80"
+                } px-3 py-2 rounded-xl font-medium transition-all duration-200 hover:scale-105 backdrop-blur-sm border">
+          ${i}
+        </button>
+      `;
+    }
+
+    // Ellipsis + last page
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        paginationHTML += `<span class="text-white/40 px-2">...</span>`;
+      }
+      paginationHTML += `
+        <button onclick="rssFeed.goToPage(${totalPages})" 
+                class="glassmorphism-btn bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white px-3 py-2 rounded-xl font-medium transition-all duration-200 hover:scale-105 backdrop-blur-sm">
+          ${totalPages}
+        </button>
+      `;
+    }
+
+    // Next Button
+    if (currentPage < totalPages) {
+      paginationHTML += `
+        <button onclick="rssFeed.goToPage(${currentPage + 1})" 
+                class="glassmorphism-btn bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/30 text-white px-4 py-2 rounded-xl font-medium transition-all duration-200 hover:scale-105 backdrop-blur-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      `;
+    }
+
+    paginationHTML += `
+          </div>
+        </div>
+      </div>
+    `;
+
+    return paginationHTML;
+  }
+
+  goToPage(pageNumber) {
+    this.currentPage = pageNumber - 1;
+    this.displayItems();
+    this.updateLoadMoreButton();
+
+    // Smooth scroll to top of news section
+    const newsSection = document.querySelector("#rss-feed-content");
+    if (newsSection) {
+      newsSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   }
 
   init() {
@@ -740,14 +1004,14 @@ class RSSFeedComponent {
 }
 
 // Initialize components when DOM is loaded
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // Initialize navbar
   const navbar = new NavbarComponent();
-  navbar.render();
+  await navbar.render();
 
   // Initialize footer
   const footer = new FooterComponent();
-  footer.render();
+  await footer.render();
 
   // Initialize RSS feed if on news page
   if (document.getElementById("rss-feed-content")) {
