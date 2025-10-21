@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSS Feed Test - AlphaTON Capital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        .success { border-color: #10b981; }
+        .error { border-color: #ef4444; }
+        .loading { border-color: #fbbf24; }
+        button {
+            background: #3e7bfa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #2563eb; }
+        pre {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .news-item {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>RSS Feed Test - AlphaTON Capital</h1>
+    
+    <div class="test-section">
+        <h2>Test Controls</h2>
+        <button onclick="testLocalProxy()">Test Local PHP Proxy</button>
+        <button onclick="testExternalProxy()">Test External Proxy</button>
+        <button onclick="testDirectFeed()">Test Direct Feed</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <div id="results" class="test-section">
+        <h2>Test Results</h2>
+        <p>Click a test button above to see results...</p>
+    </div>
+
+    <div id="news-display" class="test-section">
+        <h2>News Display</h2>
+        <div id="news-container">
+            <p>News will appear here when tests are successful...</p>
+        </div>
+    </div>
+
+    <script>
+        function updateResults(message, type = 'info') {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.className = `test-section ${type}`;
+            resultsDiv.innerHTML = `<h2>Test Results</h2><pre>${message}</pre>`;
+        }
+
+        function displayNews(newsItems) {
+            const container = document.getElementById('news-container');
+            if (!newsItems || newsItems.length === 0) {
+                container.innerHTML = '<p>No news items found</p>';
+                return;
+            }
+
+            container.innerHTML = newsItems.map(item => `
+                <div class="news-item">
+                    <h3>${item.title}</h3>
+                    <p><strong>Date:</strong> ${item.date}</p>
+                    <p><strong>Category:</strong> ${item.category}</p>
+                    <p><strong>Description:</strong> ${item.description}</p>
+                    <p><strong>Link:</strong> <a href="${item.link}" target="_blank">${item.link}</a></p>
+                </div>
+            `).join('');
+        }
+
+        async function testLocalProxy() {
+            updateResults('Testing local PHP proxy...', 'loading');
+            
+            try {
+                const response = await fetch('./rss-proxy.php');
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateResults(`✅ Local proxy successful!\n\nItems found: ${data.items.length}\nTimestamp: ${new Date(data.timestamp * 1000).toLocaleString()}\n\nData:\n${JSON.stringify(data, null, 2)}`, 'success');
+                    displayNews(data.items);
+                } else {
+                    updateResults(`❌ Local proxy failed: ${data.error}`, 'error');
+                }
+            } catch (error) {
+                updateResults(`❌ Local proxy error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testExternalProxy() {
+            updateResults('Testing external CORS proxy...', 'loading');
+            
+            try {
+                const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://alphatoncapital.com/feed/');
+                const response = await fetch(proxyUrl);
+                const data = await response.json();
+                
+                if (data.contents) {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
+                    const items = xmlDoc.querySelectorAll('item');
+                    
+                    const newsItems = Array.from(items).slice(0, 4).map(item => ({
+                        title: item.querySelector('title')?.textContent || '',
+                        link: item.querySelector('link')?.textContent || '',
+                        date: new Date(item.querySelector('pubDate')?.textContent || '').toLocaleDateString(),
+                        category: 'Press Release',
+                        description: item.querySelector('description')?.textContent?.substring(0, 200) + '...' || ''
+                    }));
+                    
+                    updateResults(`✅ External proxy successful!\n\nItems found: ${newsItems.length}\n\nData:\n${JSON.stringify(newsItems, null, 2)}`, 'success');
+                    displayNews(newsItems);
+                } else {
+                    updateResults('❌ External proxy failed: No content received', 'error');
+                }
+            } catch (error) {
+                updateResults(`❌ External proxy error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testDirectFeed() {
+            updateResults('Testing direct RSS feed access...', 'loading');
+            
+            try {
+                const response = await fetch('https://alphatoncapital.com/feed/');
+                const text = await response.text();
+                
+                if (text.includes('<rss')) {
+                    updateResults(`✅ Direct feed accessible!\n\nResponse length: ${text.length} characters\n\nFirst 500 characters:\n${text.substring(0, 500)}...`, 'success');
+                } else {
+                    updateResults('❌ Direct feed failed: Invalid RSS format', 'error');
+                }
+            } catch (error) {
+                updateResults(`❌ Direct feed error: ${error.message}\n\nThis is expected due to CORS restrictions.`, 'error');
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '<h2>Test Results</h2><p>Click a test button above to see results...</p>';
+            document.getElementById('news-container').innerHTML = '<p>News will appear here when tests are successful...</p>';
+        }
+
+        // Auto-test on page load
+        window.addEventListener('load', () => {
+            setTimeout(testLocalProxy, 1000);
+        });
+    </script>
+</body>
+</html>

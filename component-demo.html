@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaTON Capital Corp. - Investor Relations</title>
+    <meta name="description" content="AlphaTON Capital Corp. (Nasdaq: ATON) - A NASDAQ-listed digital asset company building infrastructure that connects traditional finance with TON — Telegram's blockchain ecosystem.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'alphaton-primary': '#3e7bfa',
+                        'alphaton-secondary': '#1e40af',
+                        'alphaton-accent': '#06b6d4',
+                        'alphaton-dark': '#0a0a0a',
+                        'alphaton-gray': '#1a1a2e',
+                    },
+                    fontFamily: {
+                        'redhat': ['Red Hat Display', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.3s ease-in-out',
+                        'slide-down': 'slideDown 0.3s ease-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="assets/fonts/static/RedHatDisplay-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/static/RedHatDisplay-Bold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-alphaton-dark text-white font-redhat">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-alphaton-primary text-white px-4 py-2 rounded-md z-50">
+        Skip to main content
+    </a>
+    
+    <!-- Navbar Component Container -->
+    <div id="navbar-container"></div>
+    
+    <!-- Main Content -->
+    <main id="main-content" class="min-h-screen">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-br from-alphaton-dark via-alphaton-gray to-alphaton-dark py-32 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-4xl mx-auto">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+                        <span class="bg-gradient-to-r from-alphaton-primary via-purple-500 to-alphaton-accent bg-clip-text text-transparent">
+                            Component-Based Navbar
+                        </span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                        Reusable navbar and footer components using vanilla JavaScript, following Notified HTML guidelines
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                        <a href="contact.html" class="bg-alphaton-primary hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center">
+                            Contact Investor Relations
+                        </a>
+                        <a href="news.html" class="bg-transparent border-2 border-alphaton-primary text-alphaton-primary hover:bg-alphaton-primary hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center">
+                            Latest News
+                        </a>
+                        <a href="#newsletter" class="bg-transparent border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center">
+                            Subscribe for Updates
+                        </a>
+                    </div>
+
+                    <!-- Stock Ticker -->
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="text-center sm:text-left">
+                                <div class="text-2xl font-bold text-white">NASDAQ: ATON</div>
+                                <div class="text-3xl font-bold text-alphaton-primary">$12.45</div>
+                                <div class="text-green-400 font-semibold">+0.23 (+1.88%)</div>
+                            </div>
+                            <a href="https://www.nasdaq.com/market-activity/stocks/aton" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-alphaton-primary text-alphaton-primary hover:bg-alphaton-primary hover:text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
+                                View Live Quote & Chart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Component Features Section -->
+        <section class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-4xl mx-auto mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                        Component System Benefits
+                    </h2>
+                    <p class="text-lg text-gray-300 mb-6">
+                        This approach follows Notified's requirements for pure static HTML while providing reusable components.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                        <div class="w-12 h-12 bg-alphaton-primary/20 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-alphaton-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-3">DRY Principle</h3>
+                        <p class="text-gray-400">No code duplication - navbar and footer defined once, used everywhere</p>
+                    </div>
+                    
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                        <div class="w-12 h-12 bg-alphaton-primary/20 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-alphaton-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Notified Compliant</h3>
+                        <p class="text-gray-400">Pure vanilla JavaScript, no frameworks, static HTML output</p>
+                    </div>
+                    
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                        <div class="w-12 h-12 bg-alphaton-primary/20 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-alphaton-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Easy Maintenance</h3>
+                        <p class="text-gray-400">Update navbar/footer in one place, changes apply site-wide</p>
+                    </div>
+                    
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                        <div class="w-12 h-12 bg-alphaton-primary/20 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-alphaton-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Accessibility</h3>
+                        <p class="text-gray-400">Full WCAG 2.1 A/AA compliance with proper ARIA attributes</p>
+                    </div>
+                    
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                        <div class="w-12 h-12 bg-alphaton-primary/20 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-alphaton-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Responsive</h3>
+                        <p class="text-gray-400">Mobile-first design with hamburger menu and touch-friendly interactions</p>
+                    </div>
+                    
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                        <div class="w-12 h-12 bg-alphaton-primary/20 rounded-lg flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-alphaton-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Auto Active Page</h3>
+                        <p class="text-gray-400">Automatically highlights the current page in navigation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Guide -->
+        <section class="py-20 bg-alphaton-gray">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
+                        How to Use Components
+                    </h2>
+                    
+                    <div class="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                        <h3 class="text-xl font-semibold text-white mb-4">Step 1: Include the Components Script</h3>
+                        <pre class="bg-black/40 rounded-lg p-4 text-sm text-gray-300 overflow-x-auto"><code>&lt;script src="assets/js/components.js"&gt;&lt;/script&gt;</code></pre>
+                        
+                        <h3 class="text-xl font-semibold text-white mb-4 mt-6">Step 2: Add Container Elements</h3>
+                        <pre class="bg-black/40 rounded-lg p-4 text-sm text-gray-300 overflow-x-auto"><code>&lt;!-- Navbar Component Container --&gt;
+&lt;div id="navbar-container"&gt;&lt;/div&gt;
+
+&lt;!-- Your page content here --&gt;
+
+&lt;!-- Footer Component Container --&gt;
+&lt;div id="footer-container"&gt;&lt;/div&gt;</code></pre>
+                        
+                        <h3 class="text-xl font-semibold text-white mb-4 mt-6">Step 3: That's It!</h3>
+                        <p class="text-gray-300">The components automatically initialize when the page loads. No additional JavaScript needed!</p>
+                        
+                        <div class="mt-6 p-4 bg-alphaton-primary/10 border border-alphaton-primary/30 rounded-lg">
+                            <p class="text-alphaton-primary font-semibold">✅ Benefits:</p>
+                            <ul class="text-gray-300 mt-2 space-y-1">
+                                <li>• No code duplication across pages</li>
+                                <li>• Easy to maintain and update</li>
+                                <li>• Follows Notified HTML guidelines</li>
+                                <li>• Automatic active page highlighting</li>
+                                <li>• Full mobile menu functionality</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer Component Container -->
+    <div id="footer-container"></div>
+
+    <!-- Component Scripts -->
+    <script src="assets/js/components.js"></script>
+</body>
+</html>

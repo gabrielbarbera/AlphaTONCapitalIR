@@ -9,12 +9,12 @@ AlphaTON Capital Investor Relations website - A modern, responsive website showc
 - Team and leadership information
 - Contact and governance pages
 - RSS feed integration
-- Modern CSS framework with Pico CSS
+- Modern CSS framework with custom styling
 
 ## Technologies Used
 
 - HTML5
-- CSS3 (Pico CSS framework)
+- CSS3 (Custom framework)
 - JavaScript
 - PHP (RSS proxy)
 - Responsive design principles

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - AlphaTON Capital Corp.</title>
+    <meta name="description" content="Latest news, press releases, and corporate updates from AlphaTON Capital Corp. Stay informed about our TON ecosystem investments and strategic initiatives.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    
+    <!-- AlphaTON Unified CSS -->
+    <link rel="stylesheet" href="assets/css/unified.css">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="assets/fonts/RedHatDisplay-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-alphaton-dark text-white font-redhat">
+    <!-- Blue Blob Background Animation -->
+    <div class="blob-background">
+        <svg class="blob-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="blobGradient" cx="30%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="rgba(59, 130, 246, 0.4)"></stop>
+                    <stop offset="70%" stop-color="rgba(59, 130, 246, 0.2)"></stop>
+                    <stop offset="100%" stop-color="rgba(59, 130, 246, 0.05)"></stop>
+                </radialGradient>
+            </defs>
+            <g transform="translate(300,300)">
+                <path class="blob-path" d="M120,-157.6C152.7,-141.5,174.3,-102.6,194.8,-58.8C215.3,-14.9,234.6,33.8,228.4,80.8C222.2,127.8,190.4,173.1,148.1,184C105.8,195,52.9,171.5,-2.4,174.8C-57.8,178.2,-115.6,208.4,-137.5,190.9C-159.3,173.3,-145.3,108,-153,56.3C-160.7,4.6,-190.2,-33.4,-178.3,-54.2C-166.4,-75.1,-113.2,-78.8,-76.6,-93.6C-40,-108.3,-20,-134.2,11.9,-150.5C43.7,-166.8,87.4,-173.6,120,-157.6Z"></path>
+            </g>
+        </svg>
+    </div>
+    
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-alphaton-primary text-white px-4 py-2 rounded-md z-50">
+        Skip to main content
+    </a>
+    
+    <!-- Navbar Component Container -->
+    <div id="navbar-container"></div>
+    
+    <!-- Main Content -->
+    <main id="main-content" class="min-h-screen">
+        <!-- Page Header -->
+        <section class="bg-gradient-to-br from-alphaton-dark via-alphaton-gray to-alphaton-dark py-16 pt-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        <span class="bg-gradient-to-r from-alphaton-primary to-purple-500 bg-clip-text text-transparent">
+                            News & Events
+                        </span>
+                    </h1>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Stay updated with the latest news, press releases, and corporate announcements from AlphaTON Capital Corp.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- News Content -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- RSS Feed Integration -->
+                <div class="mb-12">
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-white">Latest News & Press Releases</h2>
+                            <a href="https://alphatoncapital.com/feed/" target="_blank" rel="noopener noreferrer" class="text-alphaton-primary hover:text-blue-400 font-semibold transition-colors duration-200">
+                                RSS Feed →
+                            </a>
+                        </div>
+                        
+                        <!-- RSS Feed Content -->
+                        <div id="rss-feed-content" class="space-y-6">
+                            <!-- Loading State -->
+                            <div class="text-center py-8">
+                                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-alphaton-primary"></div>
+                                <p class="text-gray-400 mt-4">Loading latest news...</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Load More Button -->
+                        <div class="text-center mt-8">
+                            <button id="load-more-btn" class="load-more-btn group bg-alphaton-primary hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 border border-alphaton-primary/20 hover:border-alphaton-primary/40">
+                                <span class="flex items-center space-x-2">
+                                    <span>Load More News</span>
+                                    <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer Component Container -->
+    <div id="footer-container"></div>
+
+    <!-- Component Scripts -->
+    <script src="assets/js/components.js"></script>
+</body>
+</html>
