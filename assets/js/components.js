@@ -382,8 +382,9 @@ class RSSFeedComponent {
       const rssUrl = "https://alphatoncapital.com/feed/";
 
       // Method 1: Try direct fetch (will fail due to CORS)
-      // Method 2: Use CORS proxy service
+      // Method 2: Use multiple CORS proxy services
       // Method 3: Use RSS2JSON API
+      // Method 4: Fallback to static content
 
       let response;
       let xmlText;
@@ -404,71 +405,92 @@ class RSSFeedComponent {
 
         xmlText = await response.text();
       } catch (corsError) {
-        console.log("Direct fetch failed due to CORS, trying proxy...");
+        console.log(
+          "Direct fetch failed due to CORS, trying proxy services..."
+        );
 
-        // Try CORS proxy service
-        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(
-          rssUrl
-        )}`;
+        // Try multiple CORS proxy services
+        const proxyServices = [
+          `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`,
+          `https://cors-anywhere.herokuapp.com/${rssUrl}`,
+          `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(
+            rssUrl
+          )}`,
+          `https://thingproxy.freeboard.io/fetch/${rssUrl}`,
+        ];
 
-        try {
-          response = await fetch(proxyUrl, {
-            method: "GET",
-            headers: {
-              Accept: "application/rss+xml, application/xml, text/xml",
-            },
-          });
+        let proxySuccess = false;
 
-          if (!response.ok) {
-            throw new Error(
-              `Proxy HTTP ${response.status}: ${response.statusText}`
-            );
+        for (const proxyUrl of proxyServices) {
+          try {
+            console.log(`Trying proxy: ${proxyUrl}`);
+            response = await fetch(proxyUrl, {
+              method: "GET",
+              headers: {
+                Accept: "application/rss+xml, application/xml, text/xml",
+              },
+            });
+
+            if (response.ok) {
+              xmlText = await response.text();
+              proxySuccess = true;
+              console.log("Proxy service succeeded");
+              break;
+            }
+          } catch (proxyError) {
+            console.log(`Proxy failed: ${proxyError.message}`);
+            continue;
           }
+        }
 
-          xmlText = await response.text();
-        } catch (proxyError) {
-          console.log("CORS proxy failed, trying RSS2JSON...");
+        if (!proxySuccess) {
+          console.log("All proxy services failed, trying RSS2JSON...");
 
           // Try RSS2JSON API as fallback
           const rss2jsonUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(
             rssUrl
           )}`;
 
-          response = await fetch(rss2jsonUrl, {
-            method: "GET",
-            headers: {
-              Accept: "application/json",
-            },
-          });
+          try {
+            response = await fetch(rss2jsonUrl, {
+              method: "GET",
+              headers: {
+                Accept: "application/json",
+              },
+            });
 
-          if (!response.ok) {
-            throw new Error(
-              `RSS2JSON HTTP ${response.status}: ${response.statusText}`
-            );
+            if (response.ok) {
+              const jsonData = await response.json();
+
+              if (jsonData.status === "ok" && jsonData.items) {
+                // Convert RSS2JSON format to our format
+                this.allItems = jsonData.items.slice(0, 8).map((item) => ({
+                  title: item.title || "",
+                  link: item.link || "",
+                  date: this.formatDate(
+                    item.pubDate || item.publishedDate || ""
+                  ),
+                  category: this.determineCategory(
+                    item.title + " " + (item.description || item.content || "")
+                  ),
+                  description: this.cleanDescription(
+                    item.description || item.content || ""
+                  ),
+                }));
+
+                this.displayItems();
+                this.updateLoadMoreButton();
+                return;
+              }
+            }
+          } catch (rss2jsonError) {
+            console.log("RSS2JSON also failed:", rss2jsonError.message);
           }
 
-          const jsonData = await response.json();
-
-          if (jsonData.status === "ok" && jsonData.items) {
-            // Convert RSS2JSON format to our format
-            this.allItems = jsonData.items.slice(0, 8).map((item) => ({
-              title: item.title || "",
-              link: item.link || "",
-              date: this.formatDate(item.pubDate || item.publishedDate || ""),
-              category: this.determineCategory(
-                item.title + " " + (item.description || item.content || "")
-              ),
-              description: this.cleanDescription(
-                item.description || item.content || ""
-              ),
-            }));
-
-            this.displayItems();
-            this.updateLoadMoreButton();
-            return;
-          } else {
-            throw new Error("RSS2JSON returned invalid data");
-          }
+          // Final fallback: Use static content
+          console.log("All RSS methods failed, using static fallback content");
+          this.showFallbackContent();
+          return;
         }
       }
 
@@ -530,7 +552,7 @@ class RSSFeedComponent {
       }
     } catch (error) {
       console.error("RSS Feed Error:", error);
-      this.showFallbackContent();
+      this.showErrorState("Unable to load news feed. Please try again later.");
     }
   }
 
