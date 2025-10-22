@@ -1,0 +1,32 @@
+{
+  "name": "alphaton-ir-website",
+  "version": "1.0.0",
+  "description": "AlphaTON Capital Corp. Investor Relations Website",
+  "main": "src/index.html",
+  "scripts": {
+    "dev": "cd build && npm run dev",
+    "dev:serve": "cd build && npm run dev:serve",
+    "build": "cd build && npm run build",
+    "build:production": "cd build && npm run build:production",
+    "watch": "cd build && npm run watch",
+    "serve": "cd build && npm run serve",
+    "clean": "cd build && npm run clean",
+    "install-deps": "cd build && npm install"
+  },
+  "keywords": [
+    "investor-relations",
+    "alphaton-capital",
+    "static-website",
+    "notified-compliance"
+  ],
+  "author": "AlphaTON Capital Corp.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
