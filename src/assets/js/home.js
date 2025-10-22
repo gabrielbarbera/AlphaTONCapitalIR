@@ -2,23 +2,23 @@
 
 // Environment-based API Configuration for ATON stock data
 const API_CONFIG = {
-  // Primary API: Polygon.io (excellent for newer listings like ATON)
+  // Primary API: Alpha Vantage (has real ATON data)
+  ALPHA_VANTAGE: {
+    BASE_URL: "https://www.alphavantage.co/query",
+    // API key should be set via environment variable or server-side proxy
+    API_KEY: window.ALPHATON_API_KEYS?.ALPHA_VANTAGE || "WV9LXP7ACKWPOG6B",
+    ENABLED: true,
+    PRIORITY: 1, // Highest priority - has real ATON data
+  },
+
+  // Secondary API: Polygon.io (no ATON data yet)
   POLYGON: {
     BASE_URL: "https://api.polygon.io/v2",
     // API key should be set via environment variable or server-side proxy
     API_KEY:
       window.ALPHATON_API_KEYS?.POLYGON || "ZHWLHcDebVSrHAxvIM5jCHwcw2hiReTD",
     ENABLED: true,
-    PRIORITY: 1, // Highest priority - most likely to have ATON
-  },
-
-  // Secondary API: Alpha Vantage (as fallback)
-  ALPHA_VANTAGE: {
-    BASE_URL: "https://www.alphavantage.co/query",
-    // API key should be set via environment variable or server-side proxy
-    API_KEY: window.ALPHATON_API_KEYS?.ALPHA_VANTAGE || "WV9LXP7ACKWPOG6B",
-    ENABLED: true,
-    PRIORITY: 2,
+    PRIORITY: 2, // Lower priority - no ATON data available
   },
 
   // Stock symbol for AlphaTON Capital Corp.
@@ -34,6 +34,11 @@ const API_CONFIG = {
       "1M": 30, // 30 trading days
       "3M": 90, // 90 trading days
     },
+  },
+
+  // Development/testing options
+  DEBUG: {
+    VERBOSE_LOGGING: true, // Set to false to reduce console output
   },
 };
 
@@ -129,10 +134,10 @@ class StockChart {
   loadDemoData() {
     console.log("Loading demo data for ATON chart testing");
 
-    // Generate realistic demo data for ATON
+    // Generate realistic demo data for ATON based on actual Nasdaq data
     const now = new Date();
     const dataPoints = [];
-    let basePrice = 12.45; // Starting price
+    let basePrice = 5.31; // Starting price based on actual Nasdaq data ($5.31)
 
     // Generate data for the selected timeframe
     let pointCount = 0;
@@ -165,14 +170,14 @@ class StockChart {
         now.getTime() - (pointCount - i) * intervalMinutes * 60 * 1000
       );
 
-      // Add some realistic price movement
-      const change = (Math.random() - 0.5) * 0.1; // ±0.05 price change
+      // Add some realistic price movement based on actual ATON volatility
+      const change = (Math.random() - 0.5) * 0.2; // ±0.10 price change (more volatile)
       basePrice += change;
 
       const open = basePrice;
-      const high = basePrice + Math.random() * 0.05;
-      const low = basePrice - Math.random() * 0.05;
-      const close = basePrice + (Math.random() - 0.5) * 0.02;
+      const high = basePrice + Math.random() * 0.15;
+      const low = basePrice - Math.random() * 0.15;
+      const close = basePrice + (Math.random() - 0.5) * 0.05;
 
       dataPoints.push({
         timestamp: timestamp.toISOString(),
@@ -180,7 +185,7 @@ class StockChart {
         high: parseFloat(high.toFixed(2)),
         low: parseFloat(low.toFixed(2)),
         close: parseFloat(close.toFixed(2)),
-        volume: Math.floor(Math.random() * 100000) + 50000,
+        volume: Math.floor(Math.random() * 2000000) + 100000, // More realistic volume range
       });
 
       basePrice = close; // Next candle starts where this one closed
@@ -220,19 +225,24 @@ class StockChart {
   async loadStockData() {
     try {
       this.showLoading();
+      console.log("Starting stock data load for symbol:", this.symbol);
 
       // Try APIs in priority order
       const apis = this.getEnabledApis();
+      console.log(
+        "Available APIs:",
+        apis.map((api) => api.name)
+      );
 
       for (const api of apis) {
         try {
           console.log(`Trying API: ${api.name}`);
           this.currentApiSource = api.name;
 
-          if (api.name === "POLYGON") {
-            await this.fetchPolygonData();
-          } else if (api.name === "ALPHA_VANTAGE") {
+          if (api.name === "ALPHA_VANTAGE") {
             await this.fetchAlphaVantageData();
+          } else if (api.name === "POLYGON") {
+            await this.fetchPolygonData();
           }
 
           this.updatePriceDisplay();
@@ -290,7 +300,8 @@ class StockChart {
         return;
       }
 
-      // If no valid cache, show error
+      // If no valid cache, show error - no demo data for stock information
+      console.log("All APIs failed and no cache available");
       throw new Error("All data sources failed and no valid cache available");
     } catch (error) {
       console.error("Error loading stock data:", error);
@@ -325,8 +336,19 @@ class StockChart {
     const url = `${API_CONFIG.POLYGON.BASE_URL}/aggs/ticker/${this.symbol}/range/1/${timespan}/${from}/${to}?adjusted=true&sort=asc&apikey=${API_CONFIG.POLYGON.API_KEY}`;
 
     console.log("Fetching Polygon data from:", url);
+    console.log(
+      "Polygon API Key:",
+      API_CONFIG.POLYGON.API_KEY ? "Present" : "Missing"
+    );
+    console.log("Symbol:", this.symbol);
+    console.log("Timeframe:", this.currentTimeframe);
+    console.log("Timespan:", timespan);
+    console.log("From:", from);
+    console.log("To:", to);
 
     const response = await fetch(url);
+    console.log("Polygon response status:", response.status);
+    console.log("Polygon response ok:", response.ok);
 
     if (response.status === 429) {
       throw new Error(
@@ -335,7 +357,9 @@ class StockChart {
     }
 
     if (!response.ok) {
-      throw new Error(`Polygon API error: ${response.status}`);
+      const errorText = await response.text();
+      console.error("Polygon API error response:", errorText);
+      throw new Error(`Polygon API error: ${response.status} - ${errorText}`);
     }
 
     const data = await response.json();
@@ -442,10 +466,23 @@ class StockChart {
     }
 
     console.log("Fetching Alpha Vantage data from:", url);
+    console.log(
+      "Alpha Vantage API Key:",
+      API_CONFIG.ALPHA_VANTAGE.API_KEY ? "Present" : "Missing"
+    );
+    console.log("Function Type:", functionType);
+    console.log("Symbol:", this.symbol);
 
     const response = await fetch(url);
+    console.log("Alpha Vantage response status:", response.status);
+    console.log("Alpha Vantage response ok:", response.ok);
+
     if (!response.ok) {
-      throw new Error(`Alpha Vantage API error: ${response.status}`);
+      const errorText = await response.text();
+      console.error("Alpha Vantage API error response:", errorText);
+      throw new Error(
+        `Alpha Vantage API error: ${response.status} - ${errorText}`
+      );
     }
 
     const data = await response.json();
@@ -580,6 +617,13 @@ class StockChart {
   renderChart() {
     const ctx = document.getElementById("stockChart");
     if (!ctx || !this.chartData) return;
+
+    // Check if Chart.js is available
+    if (typeof Chart === "undefined") {
+      console.error("Chart.js library not loaded");
+      this.showError();
+      return;
+    }
 
     // Destroy existing chart
     if (this.chart) {
@@ -725,16 +769,25 @@ class StockChart {
       // Update error message with more helpful information
       const errorText = errorElement.querySelector("div");
       if (errorText) {
+        const chartJsStatus =
+          typeof Chart !== "undefined" ? "Available" : "Not Loaded";
         errorText.innerHTML = `
           <div class="text-sm mb-2">Failed to load ATON stock data</div>
           <div class="text-xs text-gray-400 mb-2">
-            API Rate Limits Hit:<br>
-            • Polygon.io: 429 Too Many Requests<br>
-            • Alpha Vantage: 25 requests/day exceeded<br><br>
+            <strong>Debug Info:</strong><br>
+            • Chart.js Status: ${chartJsStatus}<br>
+            • APIs Tried: ${this.getEnabledApis()
+              .map((api) => api.name)
+              .join(", ")}<br>
+            • Current Source: ${this.currentApiSource || "None"}<br><br>
+            <strong>Common Issues:</strong><br>
+            • API Rate Limits Hit<br>
+            • Chart.js library not loaded<br>
+            • Network connectivity issues<br><br>
             <strong>Solutions:</strong><br>
             • Wait 5-10 minutes before retrying<br>
-            • Consider upgrading to premium API plans<br>
-            • Previous data will be cached for 30 minutes
+            • Check browser console for errors<br>
+            • Refresh the page
           </div>
           <button onclick="loadStockData()" class="text-xs text-alphaton-primary hover:underline mt-1">Retry</button>
         `;
@@ -776,6 +829,7 @@ class HomePageManager {
     if (this.isInitialized) return;
 
     try {
+      console.log("HomePageManager.init() called");
       // Initialize stock chart directly (API config is now in same file)
       this.initStockChart();
 
@@ -790,8 +844,9 @@ class HomePageManager {
     if (this.stockChart) return;
 
     try {
+      console.log("Initializing StockChart...");
       this.stockChart = new StockChart();
-      console.log("Stock chart initialized successfully");
+      console.log("Stock chart initialized successfully:", this.stockChart);
     } catch (error) {
       console.error("Error initializing stock chart:", error);
     }
@@ -826,6 +881,55 @@ function loadStockData() {
   }
 }
 
+function testAPI() {
+  console.log("Manual API test triggered");
+
+  // Test Alpha Vantage API directly
+  const url =
+    "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=ATON&apikey=WV9LXP7ACKWPOG6B&outputsize=compact";
+
+  console.log("Testing API call to:", url);
+
+  fetch(url)
+    .then((response) => {
+      console.log("API Response status:", response.status);
+      console.log("API Response ok:", response.ok);
+      return response.json();
+    })
+    .then((data) => {
+      console.log("API Response data:", data);
+
+      if (data["Time Series (Daily)"]) {
+        const timeSeries = data["Time Series (Daily)"];
+        const entries = Object.entries(timeSeries);
+        const latestEntry = entries[0];
+
+        console.log("✅ API Test Successful!");
+        console.log("Latest Date:", latestEntry[0]);
+        console.log("Close Price:", latestEntry[1]["4. close"]);
+        console.log("Volume:", latestEntry[1]["5. volume"]);
+        console.log("Total Data Points:", entries.length);
+
+        // Update the price display manually
+        document.getElementById(
+          "current-price"
+        ).textContent = `$${latestEntry[1]["4. close"]}`;
+        document.getElementById(
+          "last-updated"
+        ).textContent = `Last updated: ${new Date().toLocaleTimeString()} (Manual Test)`;
+      } else if (data["Error Message"]) {
+        console.error("❌ API Error:", data["Error Message"]);
+      } else if (data["Note"]) {
+        console.error("⚠️ API Note:", data["Note"]);
+      } else {
+        console.error("❌ Unexpected response format:", data);
+      }
+    })
+    .catch((error) => {
+      console.error("❌ API Test Failed:", error);
+    });
+}
+
 // Initialize when DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
   // Only initialize on homepage
@@ -835,7 +939,26 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.pathname === ""
   ) {
     console.log("Initializing homepage-specific functionality");
-    homePageManager = new HomePageManager();
+    console.log("Chart.js available:", typeof Chart !== "undefined");
+    console.log("DOM ready state:", document.readyState);
+    console.log("Current URL:", window.location.href);
+    console.log("Current pathname:", window.location.pathname);
+
+    // Add a small delay to ensure Chart.js is fully loaded
+    setTimeout(() => {
+      console.log(
+        "Chart.js available after delay:",
+        typeof Chart !== "undefined"
+      );
+      console.log("Creating HomePageManager...");
+      homePageManager = new HomePageManager();
+      console.log("HomePageManager created:", homePageManager);
+    }, 100);
+  } else {
+    console.log(
+      "Not on homepage, skipping initialization. Pathname:",
+      window.location.pathname
+    );
   }
 });
 

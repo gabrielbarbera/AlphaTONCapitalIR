@@ -53,7 +53,6 @@ cd ..
 - [ ] Contact information accurate
 - [ ] Team member profiles complete
 - [ ] Governance documents present
-- [ ] Safe harbor statement included
 - [ ] Privacy policy current
 - [ ] Terms of use current
 - [ ] Copyright year correct

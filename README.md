@@ -26,7 +26,6 @@ AlphaTonIR/
 │   ├── faqs.html          # Frequently asked questions
 │   ├── privacy.html       # Privacy policy
 │   ├── terms.html         # Terms of use
-│   ├── safe-harbor.html   # Safe harbor statement
 │   ├── components/        # Reusable HTML components
 │   │   ├── header.html    # Navigation header
 │   │   └── footer.html    # Site footer

@@ -62,7 +62,7 @@
   - Highlight active page in nav
 - **Footer**:
   - Newsletter form
-  - Legal links (Privacy, Safe Harbor, Terms)
+  - Legal links (Privacy, Terms)
   - SEC filings quick link
   - IR contact
 
@@ -180,8 +180,6 @@ Copy code
 🔒 10. Compliance Notes
 Follow SEC and Nasdaq disclosure standards.
 
-Include Safe Harbor Statement in the footer or a dedicated section.
-
 External links must open in new tabs.
 
 Include Privacy Policy and Terms of Use.
@@ -240,8 +238,8 @@ Test locally before upload
 
 Provide manifest of all files if required
 
-🛡 14. Safe Harbor Statement (Boilerplate)
-This website contains forward-looking statements regarding AlphaTON Capital Corp.’s business, operations, and financial performance. These statements are subject to risks and uncertainties that may cause actual results to differ materially. Please refer to SEC filings for a discussion of risk factors.
+🛡 14. Legal Compliance (Boilerplate)
+This website contains forward-looking statements regarding AlphaTON Capital Corp.'s business, operations, and financial performance. These statements are subject to risks and uncertainties that may cause actual results to differ materially. Please refer to SEC filings for a discussion of risk factors.
 
 Full Version:
 

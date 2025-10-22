@@ -18,19 +18,8 @@
     <!-- Chart.js for stock charts -->
     <script src="assets/js/chart.min.js"></script>
     
-    <!-- Homepage-specific JavaScript (consolidated) -->
-    <script>
-      // Load consolidated homepage functionality
-      if (window.location.pathname.endsWith('index.html') || 
-          window.location.pathname === '/' || 
-          window.location.pathname === '') {
-        
-        // Load consolidated homepage file
-        const homeScript = document.createElement('script');
-        homeScript.src = 'assets/js/home.js';
-        document.head.appendChild(homeScript);
-      }
-    </script>
+    <!-- Homepage-specific JavaScript (direct load) -->
+    <script src="assets/js/home.js"></script>
 </head>
 <body class="bg-alphaton-dark text-white font-redhat">
     <!-- Blue Blob Background Animation -->
@@ -90,8 +79,8 @@
                             <!-- Stock Info -->
                             <div class="text-center flex-shrink-0">
                                 <div class="text-2xl font-bold text-white">NASDAQ: ATON</div>
-                                <div class="text-3xl font-bold text-alphaton-primary" id="current-price">$12.45</div>
-                                <div class="text-green-400 font-semibold" id="price-change">+0.23 (+1.88%)</div>
+                                <div class="text-3xl font-bold text-alphaton-primary" id="current-price">Loading...</div>
+                                <div class="text-gray-400 font-semibold" id="price-change">Loading...</div>
                                 <div class="text-sm text-gray-400 mt-2" id="last-updated">Last updated: Loading...</div>
                             </div>
                             
@@ -119,6 +108,7 @@
                                             <div class="text-center text-red-400">
                                                 <div class="text-sm">Failed to load chart data</div>
                                                 <button onclick="loadStockData()" class="text-xs text-alphaton-primary hover:underline mt-1">Retry</button>
+                                                <button onclick="testAPI()" class="text-xs text-blue-400 hover:underline mt-1 ml-2">Test API</button>
                                             </div>
                                         </div>
                                     </div>

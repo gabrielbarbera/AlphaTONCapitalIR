@@ -236,11 +236,8 @@ Sign up to receive AlphaTON Capital news, press releases, and SEC filing alerts.
 **Footer Links**
 
 * Privacy Policy
-* Safe Harbor Statement
 * Terms of Use
 * SEC Filings
 * Contact IR
-
-**Safe Harbor Statement**
 
 This website may contain forward-looking statements regarding AlphaTON Capital Corp.’s future performance. These statements involve risks and uncertainties, and actual results may differ materially. Please refer to our SEC filings for risk factors.

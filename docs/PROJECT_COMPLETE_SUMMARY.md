@@ -27,7 +27,6 @@ AlphaTonIR/
 │   ├── faqs.html                  # FAQ page
 │   ├── privacy.html               # Privacy policy
 │   ├── terms.html                 # Terms of use
-│   ├── safe-harbor.html           # Safe harbor statement
 │   ├── components/                # Reusable components
 │   │   ├── header.html
 │   │   └── footer.html
@@ -286,7 +285,6 @@ Before deploying to production:
 - [ ] Confirm team member details
 - [ ] Review governance documents
 - [ ] Validate PDF links
-- [ ] Check safe harbor statement
 
 ### Technical Validation
 - [ ] No console errors

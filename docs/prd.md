@@ -172,8 +172,7 @@ Contact
 
 * **Global Footer:**
   * Newsletter form (email only + consent text)
-  * Privacy Policy | Safe Harbor | Terms | SEC Filings | Contact
-* **Safe Harbor Disclaimer** block site-wide
+  * Privacy Policy | Terms | SEC Filings | Contact
 * **Header / Nav:** sticky on scroll, supports mobile menu
 
 ---

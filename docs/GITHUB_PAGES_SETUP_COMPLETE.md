@@ -106,7 +106,6 @@ dist/
 ├── faqs.html
 ├── privacy.html
 ├── terms.html
-├── safe-harbor.html
 ├── components/
 │   ├── header.html
 │   └── footer.html
