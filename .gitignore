@@ -83,3 +83,10 @@ temp/
 
 # TernJS port file
 .tern-port
+
+# Cursor IDE files
+.cursor/
+
+# Project documentation and backups
+docs/
+backup/
