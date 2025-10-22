@@ -79,9 +79,15 @@
                             <!-- Stock Info -->
                             <div class="text-center flex-shrink-0">
                                 <div class="text-2xl font-bold text-white">NASDAQ: ATON</div>
-                                <div class="text-3xl font-bold text-alphaton-primary" id="current-price">Loading...</div>
-                                <div class="text-gray-400 font-semibold" id="price-change">Loading...</div>
-                                <div class="text-sm text-gray-400 mt-2" id="last-updated">Last updated: Loading...</div>
+                                <div class="text-3xl font-bold text-alphaton-primary flex items-center justify-center" id="current-price">
+                                    <div class="alphaton-spinner"></div>
+                                </div>
+                                <div class="text-gray-400 font-semibold flex items-center justify-center" id="price-change">
+                                    <div class="alphaton-spinner"></div>
+                                </div>
+                                <div class="text-sm text-gray-400 mt-2 flex items-center justify-center" id="last-updated">
+                                    <div class="alphaton-spinner"></div>
+                                </div>
                             </div>
                             
                             <!-- Chart Container -->
@@ -100,15 +106,13 @@
                                         <canvas id="stockChart" class="w-full h-full"></canvas>
                                         <div id="chart-loading" class="absolute inset-0 flex items-center justify-center bg-black/20 rounded">
                                             <div class="text-center">
-                                                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-alphaton-primary mx-auto mb-2"></div>
-                                                <div class="text-gray-400 text-sm">Loading chart data...</div>
+                                                <div class="alphaton-spinner"></div>
                                             </div>
                                         </div>
                                         <div id="chart-error" class="absolute inset-0 flex items-center justify-center bg-black/20 rounded hidden">
                                             <div class="text-center text-red-400">
                                                 <div class="text-sm">Failed to load chart data</div>
                                                 <button onclick="loadStockData()" class="text-xs text-alphaton-primary hover:underline mt-1">Retry</button>
-                                                <button onclick="testAPI()" class="text-xs text-blue-400 hover:underline mt-1 ml-2">Test API</button>
                                             </div>
                                         </div>
                                     </div>
@@ -196,6 +200,19 @@
                                 <span class="text-gray-400">Registered Office</span>
                                 <div class="text-white font-semibold mt-1">8 The Green, Suite B, Dover, DE 19901, USA</div>
                             </div>
+                            <div class="py-3 border-t border-white/10">
+                                <span class="text-gray-400">Transfer Agent</span>
+                                <div class="text-white font-semibold mt-1">TSX Trust Company</div>
+                                <div class="text-gray-300 text-sm mt-1">100 Adelaide St W, Suite 301</div>
+                                <div class="text-gray-300 text-sm">Toronto, ON M5H 4H1 Canada</div>
+                                <div class="text-gray-300 text-sm">Tel: 416-361-0930</div>
+                            </div>
+                            <div class="py-3 border-t border-white/10">
+                                <span class="text-gray-400">Registered Agent (BVI)</span>
+                                <div class="text-white font-semibold mt-1">FH Corporate Services Ltd.</div>
+                                <div class="text-gray-300 text-sm mt-1">Clarence Thomas Building</div>
+                                <div class="text-gray-300 text-sm">P.O. Box 4649, Road Town, Tortola, BVI</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -205,19 +222,27 @@
                     <h3 class="text-2xl font-bold text-white mb-8 text-center">Key Metrics</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-alphaton-primary mb-2">2.5M</div>
+                            <div class="text-3xl font-bold text-alphaton-primary mb-2 flex items-center justify-center" id="ton-tokens-held">
+                                <div class="alphaton-spinner"></div>
+                            </div>
                             <div class="text-gray-300">TON Tokens Held</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-alphaton-primary mb-2">12</div>
+                            <div class="text-3xl font-bold text-alphaton-primary mb-2 flex items-center justify-center" id="validators-operated">
+                                <div class="alphaton-spinner"></div>
+                            </div>
                             <div class="text-gray-300">Validators Operated</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-alphaton-primary mb-2">8.5%</div>
+                            <div class="text-3xl font-bold text-alphaton-primary mb-2 flex items-center justify-center" id="staking-yield">
+                                <div class="alphaton-spinner"></div>
+                            </div>
                             <div class="text-gray-300">Estimated Staking Yield</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-alphaton-primary mb-2">$45M</div>
+                            <div class="text-3xl font-bold text-alphaton-primary mb-2 flex items-center justify-center" id="treasury-allocation">
+                                <div class="alphaton-spinner"></div>
+                            </div>
                             <div class="text-gray-300">Treasury Allocation</div>
                         </div>
                     </div>

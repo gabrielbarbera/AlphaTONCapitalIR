@@ -933,6 +933,67 @@ p {
   }
 }
 
+/* Custom AlphaTON Spinner */
+.alphaton-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: alphaton-rotation 1s linear infinite;
+}
+
+.alphaton-spinner::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid;
+  border-color: #00d4ff transparent;
+}
+
+.alphaton-spinner-sm {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ffffff;
+}
+
+.alphaton-spinner-sm::after {
+  width: 20px;
+  height: 20px;
+  border: 1px solid;
+  border-color: #00d4ff transparent;
+}
+
+.alphaton-spinner-lg {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #ffffff;
+}
+
+.alphaton-spinner-lg::after {
+  width: 36px;
+  height: 36px;
+  border: 3px solid;
+  border-color: #00d4ff transparent;
+}
+
+@keyframes alphaton-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Icon Buttons */
 .btn-icon {
   min-width: 44px;
@@ -6722,6 +6783,3 @@ textarea {
     transform: rotate(360deg);
   }
 }
-
-
-

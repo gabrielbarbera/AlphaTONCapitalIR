@@ -426,8 +426,7 @@ class RSSFeedComponent {
 
     container.innerHTML = `
       <div class="text-center py-8">
-        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-alphaton-primary"></div>
-        <p class="text-gray-400 mt-4">Loading latest news...</p>
+        <div class="alphaton-spinner"></div>
       </div>
     `;
   }

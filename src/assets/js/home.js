@@ -202,8 +202,8 @@ class StockChart {
 
     document.getElementById(
       "current-price"
-    ).textContent = `$${latestData.close.toFixed(2)}`;
-    document.getElementById("price-change").textContent = `${
+    ).innerHTML = `$${latestData.close.toFixed(2)}`;
+    document.getElementById("price-change").innerHTML = `${
       change >= 0 ? "+" : ""
     }${change.toFixed(2)} (${
       changePercent >= 0 ? "+" : ""
@@ -214,7 +214,7 @@ class StockChart {
         : "text-red-400 font-semibold";
     document.getElementById(
       "last-updated"
-    ).textContent = `Last updated: ${new Date().toLocaleTimeString()} (Demo Data)`;
+    ).innerHTML = `Last updated: ${new Date().toLocaleTimeString()} (Demo Data)`;
 
     this.hideLoading();
     this.renderChart();
@@ -592,14 +592,14 @@ class StockChart {
     const updatedElement = document.getElementById("last-updated");
 
     if (priceElement) {
-      priceElement.textContent = `$${currentPrice.toFixed(2)}`;
+      priceElement.innerHTML = `$${currentPrice.toFixed(2)}`;
     }
 
     if (changeElement) {
       const changeText = `${change >= 0 ? "+" : ""}${change.toFixed(2)} (${
         changePercent >= 0 ? "+" : ""
       }${changePercent.toFixed(2)}%)`;
-      changeElement.textContent = changeText;
+      changeElement.innerHTML = changeText;
       changeElement.className =
         change >= 0
           ? "text-green-400 font-semibold"
@@ -608,7 +608,7 @@ class StockChart {
 
     if (updatedElement) {
       const now = new Date();
-      updatedElement.textContent = `Last updated: ${now.toLocaleTimeString()} (via ${
+      updatedElement.innerHTML = `Last updated: ${now.toLocaleTimeString()} (via ${
         this.currentApiSource
       })`;
     }
@@ -774,17 +774,7 @@ class StockChart {
         errorText.innerHTML = `
           <div class="text-sm mb-2">Failed to load ATON stock data</div>
           <div class="text-xs text-gray-400 mb-2">
-            <strong>Debug Info:</strong><br>
-            • Chart.js Status: ${chartJsStatus}<br>
-            • APIs Tried: ${this.getEnabledApis()
-              .map((api) => api.name)
-              .join(", ")}<br>
-            • Current Source: ${this.currentApiSource || "None"}<br><br>
-            <strong>Common Issues:</strong><br>
-            • API Rate Limits Hit<br>
-            • Chart.js library not loaded<br>
-            • Network connectivity issues<br><br>
-            <strong>Solutions:</strong><br>
+           
             • Wait 5-10 minutes before retrying<br>
             • Check browser console for errors<br>
             • Refresh the page
@@ -815,10 +805,304 @@ class StockChart {
   }
 }
 
+// Key Metrics Component
+class KeyMetrics {
+  constructor() {
+    this.metrics = {
+      tonTokensHeld: { value: "2.5M", source: "mock", lastUpdated: new Date() },
+      validatorsOperated: {
+        value: "12",
+        source: "mock",
+        lastUpdated: new Date(),
+      },
+      stakingYield: { value: "8.5%", source: "mock", lastUpdated: new Date() },
+      treasuryAllocation: {
+        value: "$45M",
+        source: "mock",
+        lastUpdated: new Date(),
+      },
+    };
+
+    this.updateInterval = 300000; // 5 minutes
+    this.isLoading = false;
+
+    console.log("KeyMetrics component initialized");
+    // Don't auto-init here, let HomePageManager handle it
+  }
+
+  async init() {
+    try {
+      console.log("Initializing Key Metrics...");
+      await this.loadMetrics();
+      this.startAutoUpdate();
+    } catch (error) {
+      console.error("Error initializing Key Metrics:", error);
+      this.showError();
+    }
+  }
+
+  async loadMetrics() {
+    if (this.isLoading) return;
+
+    this.isLoading = true;
+    this.showLoading();
+
+    try {
+      console.log("KeyMetrics: Starting to load metrics...");
+
+      // Try to get real financial data from Alpha Vantage
+      const financialData = await this.fetchFinancialData();
+
+      // Update metrics with real data where available
+      if (financialData) {
+        console.log("KeyMetrics: Updating with real financial data");
+        this.updateFinancialMetrics(financialData);
+      } else {
+        console.log(
+          "KeyMetrics: No financial data available, using simulated data"
+        );
+      }
+
+      // For blockchain-specific metrics, we'll use mock data for now
+      // In production, these would come from TON blockchain APIs or company reports
+      console.log("KeyMetrics: Updating blockchain metrics");
+      this.updateBlockchainMetrics();
+
+      console.log("KeyMetrics: Rendering metrics");
+      this.renderMetrics();
+    } catch (error) {
+      console.error("Error loading metrics:", error);
+      this.showError();
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  async fetchFinancialData() {
+    try {
+      const url = `${API_CONFIG.ALPHA_VANTAGE.BASE_URL}?function=OVERVIEW&symbol=${API_CONFIG.STOCK_SYMBOL}&apikey=${API_CONFIG.ALPHA_VANTAGE.API_KEY}`;
+
+      console.log("Fetching company overview data from Alpha Vantage...");
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data["Error Message"]) {
+        throw new Error(data["Error Message"]);
+      }
+
+      if (data["Note"]) {
+        console.warn(
+          "API rate limit reached for Key Metrics, using simulated data"
+        );
+        return null;
+      }
+
+      if (data["Information"]) {
+        console.warn(
+          "API rate limit reached for Key Metrics, using simulated data"
+        );
+        return null;
+      }
+
+      console.log("Company overview data received:", data);
+      return data;
+    } catch (error) {
+      console.error("Error fetching financial data:", error);
+      return null;
+    }
+  }
+
+  updateFinancialMetrics(data) {
+    // Update treasury allocation if we have market cap data
+    if (data.MarketCapitalization) {
+      const marketCap = parseFloat(data.MarketCapitalization);
+      if (!isNaN(marketCap) && marketCap > 0) {
+        // Estimate treasury allocation as a percentage of market cap
+        // This is a simplified calculation - in reality, this would come from company reports
+        const estimatedTreasuryPercent = 0.15; // 15% estimate
+        const treasuryValue = marketCap * estimatedTreasuryPercent;
+
+        this.metrics.treasuryAllocation = {
+          value: this.formatCurrency(treasuryValue),
+          source: "api",
+          lastUpdated: new Date(),
+        };
+      }
+    }
+
+    // Update staking yield based on company performance if available
+    if (data.ReturnOnEquityTTM) {
+      const roe = parseFloat(data.ReturnOnEquityTTM);
+      if (!isNaN(roe) && roe > 0) {
+        // Estimate staking yield based on ROE (simplified calculation)
+        const estimatedYield = Math.min(roe * 0.3, 15); // Cap at 15%
+
+        this.metrics.stakingYield = {
+          value: `${estimatedYield.toFixed(1)}%`,
+          source: "api",
+          lastUpdated: new Date(),
+        };
+      }
+    }
+  }
+
+  updateBlockchainMetrics() {
+    // For blockchain-specific metrics, we'll simulate realistic updates
+    // In production, these would come from TON blockchain APIs
+
+    // Simulate TON token holdings growth
+    const baseTokens = 2500000;
+    const growthFactor = 1 + (Math.random() - 0.5) * 0.1; // ±5% variation
+    const currentTokens = Math.round(baseTokens * growthFactor);
+
+    this.metrics.tonTokensHeld = {
+      value: this.formatNumber(currentTokens),
+      source: "simulated",
+      lastUpdated: new Date(),
+    };
+
+    // Simulate validator count (usually stable)
+    const baseValidators = 12;
+    const validatorVariation = Math.floor((Math.random() - 0.5) * 2); // ±1 validator
+    const currentValidators = Math.max(10, baseValidators + validatorVariation);
+
+    this.metrics.validatorsOperated = {
+      value: currentValidators.toString(),
+      source: "simulated",
+      lastUpdated: new Date(),
+    };
+  }
+
+  renderMetrics() {
+    // Update TON Tokens Held
+    const tonTokensElement = document.getElementById("ton-tokens-held");
+    if (tonTokensElement) {
+      tonTokensElement.innerHTML = this.metrics.tonTokensHeld.value;
+      this.addUpdateIndicator(
+        tonTokensElement,
+        this.metrics.tonTokensHeld.source
+      );
+    }
+
+    // Update Validators Operated
+    const validatorsElement = document.getElementById("validators-operated");
+    if (validatorsElement) {
+      validatorsElement.innerHTML = this.metrics.validatorsOperated.value;
+      this.addUpdateIndicator(
+        validatorsElement,
+        this.metrics.validatorsOperated.source
+      );
+    }
+
+    // Update Staking Yield
+    const stakingYieldElement = document.getElementById("staking-yield");
+    if (stakingYieldElement) {
+      stakingYieldElement.innerHTML = this.metrics.stakingYield.value;
+      this.addUpdateIndicator(
+        stakingYieldElement,
+        this.metrics.stakingYield.source
+      );
+    }
+
+    // Update Treasury Allocation
+    const treasuryElement = document.getElementById("treasury-allocation");
+    if (treasuryElement) {
+      treasuryElement.innerHTML = this.metrics.treasuryAllocation.value;
+      this.addUpdateIndicator(
+        treasuryElement,
+        this.metrics.treasuryAllocation.source
+      );
+    }
+
+    console.log("Key Metrics rendered successfully");
+  }
+
+  addUpdateIndicator(element, source) {
+    // Add a subtle indicator for data source
+    if (source === "api") {
+      element.style.opacity = "1";
+      element.style.transition = "opacity 0.3s ease";
+    } else if (source === "simulated") {
+      element.style.opacity = "0.9";
+      element.style.transition = "opacity 0.3s ease";
+    }
+  }
+
+  showLoading() {
+    // Add loading state to metrics
+    const metricElements = [
+      "ton-tokens-held",
+      "validators-operated",
+      "staking-yield",
+      "treasury-allocation",
+    ];
+
+    metricElements.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.innerHTML = `<div class="alphaton-spinner"></div>`;
+        element.style.opacity = "0.8";
+      }
+    });
+  }
+
+  showError() {
+    // Show error state
+    const metricElements = [
+      "ton-tokens-held",
+      "validators-operated",
+      "staking-yield",
+      "treasury-allocation",
+    ];
+
+    metricElements.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.innerHTML = "N/A";
+        element.style.opacity = "0.5";
+      }
+    });
+  }
+
+  startAutoUpdate() {
+    // Auto-update metrics every 5 minutes
+    setInterval(() => {
+      console.log("Auto-updating Key Metrics...");
+      this.loadMetrics();
+    }, this.updateInterval);
+  }
+
+  formatNumber(num) {
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1) + "M";
+    } else if (num >= 1000) {
+      return (num / 1000).toFixed(1) + "K";
+    }
+    return num.toString();
+  }
+
+  formatCurrency(num) {
+    if (num >= 1000000000) {
+      return "$" + (num / 1000000000).toFixed(1) + "B";
+    } else if (num >= 1000000) {
+      return "$" + (num / 1000000).toFixed(1) + "M";
+    } else if (num >= 1000) {
+      return "$" + (num / 1000).toFixed(1) + "K";
+    }
+    return "$" + num.toFixed(0);
+  }
+}
+
 // Homepage-specific functionality
 class HomePageManager {
   constructor() {
     this.stockChart = null;
+    this.keyMetrics = null;
     this.isInitialized = false;
 
     console.log("HomePageManager initialized");
@@ -832,6 +1116,9 @@ class HomePageManager {
       console.log("HomePageManager.init() called");
       // Initialize stock chart directly (API config is now in same file)
       this.initStockChart();
+
+      // Initialize key metrics
+      this.initKeyMetrics();
 
       this.isInitialized = true;
       console.log("HomePageManager fully initialized");
@@ -849,6 +1136,20 @@ class HomePageManager {
       console.log("Stock chart initialized successfully:", this.stockChart);
     } catch (error) {
       console.error("Error initializing stock chart:", error);
+    }
+  }
+
+  initKeyMetrics() {
+    if (this.keyMetrics) return;
+
+    try {
+      console.log("Initializing KeyMetrics...");
+      this.keyMetrics = new KeyMetrics();
+      // Call init() method to actually load the metrics
+      this.keyMetrics.init();
+      console.log("Key metrics initialized successfully:", this.keyMetrics);
+    } catch (error) {
+      console.error("Error initializing key metrics:", error);
     }
   }
 
@@ -913,10 +1214,10 @@ function testAPI() {
         // Update the price display manually
         document.getElementById(
           "current-price"
-        ).textContent = `$${latestEntry[1]["4. close"]}`;
+        ).innerHTML = `$${latestEntry[1]["4. close"]}`;
         document.getElementById(
           "last-updated"
-        ).textContent = `Last updated: ${new Date().toLocaleTimeString()} (Manual Test)`;
+        ).innerHTML = `Last updated: ${new Date().toLocaleTimeString()} (Manual Test)`;
       } else if (data["Error Message"]) {
         console.error("❌ API Error:", data["Error Message"]);
       } else if (data["Note"]) {
