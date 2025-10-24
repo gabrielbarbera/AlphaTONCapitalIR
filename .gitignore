@@ -86,7 +86,3 @@ temp/
 
 # Cursor IDE files
 .cursor/
-
-# Project documentation and backups
-docs/
-backup/

@@ -9,8 +9,8 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     
-    <!-- AlphaTON Unified CSS -->
-    <link rel="stylesheet" href="assets/css/unified.css">
+    <!-- Milligram Theme CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
     
     <!-- Preload critical fonts -->
     <link rel="preload" href="assets/fonts/RedHatDisplay-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
@@ -21,7 +21,7 @@
     <!-- Homepage-specific JavaScript (direct load) -->
     <script src="assets/js/home.js"></script>
 </head>
-<body class="bg-alphaton-dark text-white font-redhat">
+<body>
     <!-- Blue Blob Background Animation -->
     <div class="blob-background">
         <svg class="blob-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@
     </div>
     
     <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-alphaton-primary text-white px-4 py-2 rounded-md z-50">
+    <a href="#main-content" class="sr-only">
         Skip to main content
     </a>
     
@@ -47,83 +47,93 @@
     @@include('components/header.html')
     
     <!-- Main Content -->
-    <main id="main-content" class="min-h-screen">
+    <main id="main-content">
         <!-- Hero Section -->
-        <section class="bg-gradient-to-br from-alphaton-dark via-alphaton-gray to-alphaton-dark py-32 lg:py-32">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-4xl mx-auto">
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-                        <span class="bg-gradient-to-r from-alphaton-primary via-purple-500 to-alphaton-accent bg-clip-text text-transparent">
+        <section class="hero-section">
+            <div class="container">
+                <div class="row row-center">
+                    <div class="column text-center">
+                        <h1 class="hero-title">
                             A Public Digital Asset Company on TON
-                        </span>
-                    </h1>
-                    <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-                        Bridging institutional capital with the Telegram-based crypto ecosystem through regulated, transparent infrastructure
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                        <a href="contact.html" class="bg-alphaton-primary hover:bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center">
-                            Contact Investor Relations
-                        </a>
-                        <a href="news.html" class="bg-transparent border-2 border-alphaton-primary text-alphaton-primary hover:bg-alphaton-primary hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center">
-                            Latest News
-                        </a>
-                        <a href="#newsletter" class="bg-transparent border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center">
-                            Subscribe for Updates
-                        </a>
-                    </div>
-
-                    <!-- Stock Ticker with Chart -->
-                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                        <div class="flex flex-col lg:flex-row items-center justify-center gap-6">
-                            <!-- Stock Info -->
-                            <div class="text-center flex-shrink-0">
-                                <div class="text-2xl font-bold text-white">NASDAQ: ATON</div>
-                                <div class="text-3xl font-bold text-alphaton-primary flex items-center justify-center" id="current-price">
-                                    <div class="alphaton-spinner"></div>
-                                </div>
-                                <div class="text-gray-400 font-semibold flex items-center justify-center" id="price-change">
-                                    <div class="alphaton-spinner"></div>
-                                </div>
-                                <div class="text-sm text-gray-400 mt-2 flex items-center justify-center" id="last-updated">
-                                    <div class="alphaton-spinner"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- Chart Container -->
-                            <div class="flex-1 w-full lg:w-auto min-h-[300px]">
-                                <div class="bg-black/20 rounded-lg p-4 h-full">
-                                    <div class="flex justify-between items-center mb-4">
-                                        <h3 class="text-lg font-semibold text-white">Price Chart</h3>
-                                        <div class="flex gap-2">
-                                            <button class="px-3 py-1 text-xs bg-alphaton-primary/20 text-alphaton-primary rounded hover:bg-alphaton-primary/30 transition-colors" onclick="updateChart('1D')">1D</button>
-                                            <button class="px-3 py-1 text-xs bg-white/10 text-gray-300 rounded hover:bg-white/20 transition-colors" onclick="updateChart('5D')">5D</button>
-                                            <button class="px-3 py-1 text-xs bg-white/10 text-gray-300 rounded hover:bg-white/20 transition-colors" onclick="updateChart('1M')">1M</button>
-                                            <button class="px-3 py-1 text-xs bg-white/10 text-gray-300 rounded hover:bg-white/20 transition-colors" onclick="updateChart('3M')">3M</button>
-                                        </div>
-                                    </div>
-                                    <div class="relative h-64">
-                                        <canvas id="stockChart" class="w-full h-full"></canvas>
-                                        <div id="chart-loading" class="absolute inset-0 flex items-center justify-center bg-black/20 rounded">
-                                            <div class="text-center">
-                                                <div class="alphaton-spinner"></div>
-                                            </div>
-                                        </div>
-                                        <div id="chart-error" class="absolute inset-0 flex items-center justify-center bg-black/20 rounded hidden">
-                                            <div class="text-center text-red-400">
-                                                <div class="text-sm">Failed to load chart data</div>
-                                                <button onclick="loadStockData()" class="text-xs text-alphaton-primary hover:underline mt-1">Retry</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- External Link -->
-                            <div class="flex-shrink-0 text-center">
-                                <a href="https://www.nasdaq.com/market-activity/stocks/aton" target="_blank" rel="noopener noreferrer" class="bg-transparent border-2 border-alphaton-primary text-alphaton-primary hover:bg-alphaton-primary hover:text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
-                                    View Live Quote & Chart
+                        </h1>
+                        <p class="hero-subtitle">
+                            Bridging institutional capital with the Telegram-based crypto ecosystem through regulated, transparent infrastructure
+                        </p>
+                        
+                        <div class="row row-center">
+                            <div class="column column-33">
+                                <a href="contact.html" class="button button-primary">
+                                    Contact Investor Relations
                                 </a>
+                            </div>
+                            <div class="column column-33">
+                                <a href="news.html" class="button button-outline">
+                                    Latest News
+                                </a>
+                            </div>
+                            <div class="column column-33">
+                                <a href="#newsletter" class="button button-clear">
+                                    Subscribe for Updates
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Stock Ticker with Chart -->
+                        <div class="card">
+                            <div class="row row-center">
+                                <!-- Stock Info -->
+                                <div class="column column-25 text-center">
+                                    <div class="stock-symbol">NASDAQ: ATON</div>
+                                    <div class="stock-price" id="current-price">
+                                        <div class="alphaton-spinner"></div>
+                                    </div>
+                                    <div class="stock-change" id="price-change">
+                                        <div class="alphaton-spinner"></div>
+                                    </div>
+                                    <div class="stock-updated" id="last-updated">
+                                        <div class="alphaton-spinner"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Chart Container -->
+                                <div class="column column-50">
+                                    <div class="chart-container">
+                                        <div class="row row-center">
+                                            <div class="column column-75">
+                                                <h3 class="chart-title">Price Chart</h3>
+                                            </div>
+                                            <div class="column column-25">
+                                                <div class="chart-controls">
+                                                    <button class="button button-outline" onclick="updateChart('1D')">1D</button>
+                                                    <button class="button button-clear" onclick="updateChart('5D')">5D</button>
+                                                    <button class="button button-clear" onclick="updateChart('1M')">1M</button>
+                                                    <button class="button button-clear" onclick="updateChart('3M')">3M</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="chart-canvas-container">
+                                            <canvas id="stockChart"></canvas>
+                                            <div id="chart-loading" class="chart-loading">
+                                                <div class="text-center">
+                                                    <div class="alphaton-spinner"></div>
+                                                </div>
+                                            </div>
+                                            <div id="chart-error" class="chart-error hidden">
+                                                <div class="text-center text-primary">
+                                                    <div class="text-sm">Failed to load chart data</div>
+                                                    <button onclick="loadStockData()" class="text-xs text-primary hover:underline">Retry</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- External Link -->
+                                <div class="column column-25 text-center">
+                                    <a href="https://www.nasdaq.com/market-activity/stocks/aton" target="_blank" rel="noopener noreferrer" class="button button-outline">
+                                        View Live Quote & Chart
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -132,186 +142,222 @@
         </section>
         
         <!-- About Section -->
-        <section class="py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-4xl mx-auto mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-                        About AlphaTON Capital Corp. (Nasdaq: ATON)
-                    </h2>
-                    <p class="text-lg text-gray-300 mb-6">
-                        AlphaTON Capital Corp. is a <strong class="text-alphaton-primary">public digital asset company</strong> focused on the <strong class="text-alphaton-primary">Telegram Open Network (TON)</strong>. We build and manage a strategic reserve of TON tokens, operate validator infrastructure, and invest in ecosystem projects to provide institutional and retail investors with transparent exposure to the TON economy.
-                    </p>
-                    <p class="text-lg text-gray-300">
-                        Our mission is to bring institutional capital to the Telegram financial layer through a <strong class="text-alphaton-primary">regulated, publicly listed entity</strong>, delivering both governance transparency and crypto-native performance.
-                    </p>
+        <section class="about-section">
+            <div class="container">
+                <div class="row row-center">
+                    <div class="column text-center">
+                        <h2 class="about-title">
+                            About AlphaTON Capital Corp. (Nasdaq: ATON)
+                        </h2>
+                        <p class="about-text">
+                            AlphaTON Capital Corp. is a <strong class="text-primary">public digital asset company</strong> focused on the <strong class="text-primary">Telegram Open Network (TON)</strong>. We build and manage a strategic reserve of TON tokens, operate validator infrastructure, and invest in ecosystem projects to provide institutional and retail investors with transparent exposure to the TON economy.
+                        </p>
+                        <p class="about-text">
+                            Our mission is to bring institutional capital to the Telegram financial layer through a <strong class="text-primary">regulated, publicly listed entity</strong>, delivering both governance transparency and crypto-native performance.
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                        <h3 class="text-2xl font-bold text-white mb-6">Strategic Pillars</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-alphaton-primary rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                    <strong class="text-white">Validator & Treasury Operations</strong>
-                                    <span class="text-gray-300"> — staking and infrastructure at scale</span>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-alphaton-primary rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                    <strong class="text-white">Ecosystem Investments</strong>
-                                    <span class="text-gray-300"> — supporting TON-native protocols, DeFi, apps, and liquidity strategies</span>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-alphaton-primary rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                    <strong class="text-white">Institutional Access</strong>
-                                    <span class="text-gray-300"> — bridging digital assets with traditional capital markets</span>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-alphaton-primary rounded-full mt-2 flex-shrink-0"></div>
-                                <div>
-                                    <strong class="text-white">Transparent Governance</strong>
-                                    <span class="text-gray-300"> — Nasdaq-listed reporting standards and oversight</span>
-                                </div>
-                            </div>
+                <div class="row row-center">
+                    <div class="column column-50">
+                        <div class="card">
+                            <h3 class="pillar-title">Strategic Pillars</h3>
+                            <ul class="pillar-list">
+                                <li class="pillar-item">
+                                    <div class="row row-center">
+                                        <div class="column column-10">
+                                            <div class="pillar-dot"></div>
+                                        </div>
+                                        <div class="column column-90">
+                                            <strong class="text-primary">Validator & Treasury Operations</strong>
+                                            <span class="text-secondary"> — staking and infrastructure at scale</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="pillar-item">
+                                    <div class="row row-center">
+                                        <div class="column column-10">
+                                            <div class="pillar-dot"></div>
+                                        </div>
+                                        <div class="column column-90">
+                                            <strong class="text-primary">Ecosystem Investments</strong>
+                                            <span class="text-secondary"> — supporting TON-native protocols, DeFi, apps, and liquidity strategies</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="pillar-item">
+                                    <div class="row row-center">
+                                        <div class="column column-10">
+                                            <div class="pillar-dot"></div>
+                                        </div>
+                                        <div class="column column-90">
+                                            <strong class="text-primary">Institutional Access</strong>
+                                            <span class="text-secondary"> — bridging digital assets with traditional capital markets</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="pillar-item">
+                                    <div class="row row-center">
+                                        <div class="column column-10">
+                                            <div class="pillar-dot"></div>
+                                        </div>
+                                        <div class="column column-90">
+                                            <strong class="text-primary">Transparent Governance</strong>
+                                            <span class="text-secondary"> — Nasdaq-listed reporting standards and oversight</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     
-                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
-                        <h3 class="text-2xl font-bold text-white mb-6">Company Information</h3>
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center py-3 border-b border-white/10">
-                                <span class="text-gray-400">Ticker</span>
-                                <strong class="text-white">ATON (Nasdaq Capital Market)</strong>
-                            </div>
-                            <div class="flex justify-between items-center py-3 border-b border-white/10">
-                                <span class="text-gray-400">Incorporation</span>
-                                <strong class="text-white">Delaware, United States</strong>
-                            </div>
-                            <div class="flex justify-between items-center py-3 border-b border-white/10">
-                                <span class="text-gray-400">Fiscal Year End</span>
-                                <strong class="text-white">December 31</strong>
-                            </div>
-                            <div class="py-3">
-                                <span class="text-gray-400">Registered Office</span>
-                                <div class="text-white font-semibold mt-1">8 The Green, Suite B, Dover, DE 19901, USA</div>
-                            </div>
-                            <div class="py-3 border-t border-white/10">
-                                <span class="text-gray-400">Transfer Agent</span>
-                                <div class="text-white font-semibold mt-1">TSX Trust Company</div>
-                                <div class="text-gray-300 text-sm mt-1">100 Adelaide St W, Suite 301</div>
-                                <div class="text-gray-300 text-sm">Toronto, ON M5H 4H1 Canada</div>
-                                <div class="text-gray-300 text-sm">Tel: 416-361-0930</div>
-                            </div>
-                            <div class="py-3 border-t border-white/10">
-                                <span class="text-gray-400">Registered Agent (BVI)</span>
-                                <div class="text-white font-semibold mt-1">FH Corporate Services Ltd.</div>
-                                <div class="text-gray-300 text-sm mt-1">Clarence Thomas Building</div>
-                                <div class="text-gray-300 text-sm">P.O. Box 4649, Road Town, Tortola, BVI</div>
-                            </div>
+                    <div class="column column-50">
+                        <div class="card">
+                            <h3 class="company-title">Company Information</h3>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-muted">Ticker</td>
+                                        <td><strong class="text-primary">ATON (Nasdaq Capital Market)</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Incorporation</td>
+                                        <td><strong class="text-primary">Delaware, United States</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Fiscal Year End</td>
+                                        <td><strong class="text-primary">December 31</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Registered Office</td>
+                                        <td><strong class="text-primary">8 The Green, Suite B, Dover, DE 19901, USA</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Transfer Agent</td>
+                                        <td>
+                                            <strong class="text-primary">TSX Trust Company</strong><br>
+                                            <span class="text-secondary company-detail">100 Adelaide St W, Suite 301</span><br>
+                                            <span class="text-secondary text-sm">Toronto, ON M5H 4H1 Canada</span><br>
+                                            <span class="text-secondary text-sm">Tel: 416-361-0930</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Registered Agent (BVI)</td>
+                                        <td>
+                                            <strong class="text-primary">FH Corporate Services Ltd.</strong><br>
+                                            <span class="text-secondary text-sm">Clarence Thomas Building</span><br>
+                                            <span class="text-secondary text-sm">P.O. Box 4649, Road Town, Tortola, BVI</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
                 <!-- Key Metrics Dashboard -->
-                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 mb-16">
-                    <h3 class="text-2xl font-bold text-white mb-8 text-center">Key Metrics</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-alphaton-primary mb-2 flex items-center justify-center" id="ton-tokens-held">
+                <div class="card mb-16">
+                    <h3 class="text-2xl font-bold text-primary mb-8 text-center">Key Metrics</h3>
+                    <div class="row row-center">
+                        <div class="column column-25 text-center">
+                            <div class="text-3xl font-bold text-primary mb-2 flex items-center justify-center" id="ton-tokens-held">
                                 <div class="alphaton-spinner"></div>
                             </div>
-                            <div class="text-gray-300">TON Tokens Held</div>
+                            <div class="text-secondary">TON Tokens Held</div>
                         </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-alphaton-primary mb-2 flex items-center justify-center" id="validators-operated">
+                        <div class="column column-25 text-center">
+                            <div class="text-3xl font-bold text-primary mb-2 flex items-center justify-center" id="validators-operated">
                                 <div class="alphaton-spinner"></div>
                             </div>
-                            <div class="text-gray-300">Validators Operated</div>
+                            <div class="text-secondary">Validators Operated</div>
                         </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-alphaton-primary mb-2 flex items-center justify-center" id="staking-yield">
+                        <div class="column column-25 text-center">
+                            <div class="text-3xl font-bold text-primary mb-2 flex items-center justify-center" id="staking-yield">
                                 <div class="alphaton-spinner"></div>
                             </div>
-                            <div class="text-gray-300">Estimated Staking Yield</div>
+                            <div class="text-secondary">Estimated Staking Yield</div>
                         </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-alphaton-primary mb-2 flex items-center justify-center" id="treasury-allocation">
+                        <div class="column column-25 text-center">
+                            <div class="text-3xl font-bold text-primary mb-2 flex items-center justify-center" id="treasury-allocation">
                                 <div class="alphaton-spinner"></div>
                             </div>
-                            <div class="text-gray-300">Treasury Allocation</div>
+                            <div class="text-secondary">Treasury Allocation</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Quick Links -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <a href="https://www.sec.gov/edgar/browse/?CIK=1095435&owner=exclude" target="_blank" rel="noopener noreferrer" class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-alphaton-primary/50 transition-all duration-200 group">
-                        <div class="text-center">
-                            <div class="text-2xl mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-alphaton-primary">
-                                    <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                                    <path d="M9 9l1 0" />
-                                    <path d="M9 13l6 0" />
-                                    <path d="M9 17l6 0" />
-                                </svg>
+                <div class="row row-center">
+                    <div class="column column-25">
+                        <a href="https://www.sec.gov/edgar/browse/?CIK=1095435&owner=exclude" target="_blank" rel="noopener noreferrer" class="card hover:scale-105 transition-all duration-200">
+                            <div class="text-center">
+                                <div class="text-2xl mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-primary">
+                                        <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                        <path d="M9 9l1 0" />
+                                        <path d="M9 13l6 0" />
+                                        <path d="M9 17l6 0" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-primary font-semibold mb-2 hover:text-primary transition-colors">SEC Filings</h4>
+                                <p class="text-muted text-sm">View all regulatory filings</p>
                             </div>
-                            <h4 class="text-white font-semibold mb-2 group-hover:text-alphaton-primary transition-colors">SEC Filings</h4>
-                            <p class="text-gray-400 text-sm">View all regulatory filings</p>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                     
-                    <a href="news.html" class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-alphaton-primary/50 transition-all duration-200 group">
-                        <div class="text-center">
-                            <div class="text-2xl mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-alphaton-primary">
-                                    <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" />
-                                    <path d="M8 8l4 0" />
-                                    <path d="M8 12l4 0" />
-                                    <path d="M8 16l4 0" />
-                                </svg>
+                    <div class="column column-25">
+                        <a href="news.html" class="card hover:scale-105 transition-all duration-200">
+                            <div class="text-center">
+                                <div class="text-2xl mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-primary">
+                                        <path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" />
+                                        <path d="M8 8l4 0" />
+                                        <path d="M8 12l4 0" />
+                                        <path d="M8 16l4 0" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-primary font-semibold mb-2 hover:text-primary transition-colors">Press Releases</h4>
+                                <p class="text-muted text-sm">Latest company news</p>
                             </div>
-                            <h4 class="text-white font-semibold mb-2 group-hover:text-alphaton-primary transition-colors">Press Releases</h4>
-                            <p class="text-gray-400 text-sm">Latest company news</p>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                     
-                    <a href="governance.html" class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-alphaton-primary/50 transition-all duration-200 group">
-                        <div class="text-center">
-                            <div class="text-2xl mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-alphaton-primary">
-                                    <path d="M3 21l18 0" />
-                                    <path d="M3 10l18 0" />
-                                    <path d="M5 6l7 -3l7 3" />
-                                    <path d="M4 10l0 11" />
-                                    <path d="M20 10l0 11" />
-                                    <path d="M8 14l0 3" />
-                                    <path d="M12 14l0 3" />
-                                    <path d="M16 14l0 3" />
-                                </svg>
+                    <div class="column column-25">
+                        <a href="governance.html" class="card hover:scale-105 transition-all duration-200">
+                            <div class="text-center">
+                                <div class="text-2xl mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-primary">
+                                        <path d="M3 21l18 0" />
+                                        <path d="M3 10l18 0" />
+                                        <path d="M5 6l7 -3l7 3" />
+                                        <path d="M4 10l0 11" />
+                                        <path d="M20 10l0 11" />
+                                        <path d="M8 14l0 3" />
+                                        <path d="M12 14l0 3" />
+                                        <path d="M16 14l0 3" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-primary font-semibold mb-2 hover:text-primary transition-colors">Governance</h4>
+                                <p class="text-muted text-sm">Corporate policies</p>
                             </div>
-                            <h4 class="text-white font-semibold mb-2 group-hover:text-alphaton-primary transition-colors">Governance</h4>
-                            <p class="text-gray-400 text-sm">Corporate policies</p>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                     
-                    <a href="contact.html" class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-alphaton-primary/50 transition-all duration-200 group">
-                        <div class="text-center">
-                            <div class="text-2xl mb-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-alphaton-primary">
-                                    <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
-                                    <path d="M3 7l9 6l9 -6" />
-                                </svg>
+                    <div class="column column-25">
+                        <a href="contact.html" class="card hover:scale-105 transition-all duration-200">
+                            <div class="text-center">
+                                <div class="text-2xl mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-primary">
+                                        <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+                                        <path d="M3 7l9 6l9 -6" />
+                                    </svg>
+                                </div>
+                                <h4 class="text-primary font-semibold mb-2 hover:text-primary transition-colors">Contact IR</h4>
+                                <p class="text-muted text-sm">Get in touch</p>
                             </div>
-                            <h4 class="text-white font-semibold mb-2 group-hover:text-alphaton-primary transition-colors">Contact IR</h4>
-                            <p class="text-gray-400 text-sm">Get in touch</p>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

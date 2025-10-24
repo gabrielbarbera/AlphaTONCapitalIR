@@ -1,0 +1,62 @@
+name: Sync Production Build to Dist Repository
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  sync-dist:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout main repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: 'build/package-lock.json'
+    
+    - name: Install dependencies
+      run: |
+        cd build
+        npm ci
+    
+    - name: Build production
+      run: |
+        cd build
+        npm run build:production
+    
+    - name: Checkout dist repository
+      uses: actions/checkout@v4
+      with:
+        repository: gabrielbarbera/AlphaTONCapitalIR-dev
+        token: ${{ secrets.DIST_REPO_TOKEN }}
+        path: dist-repo
+    
+    - name: Sync dist folder
+      run: |
+        # Remove old files
+        rm -rf dist-repo/*
+        
+        # Copy new dist contents
+        cp -r dist/* dist-repo/
+        
+        # Add all files
+        cd dist-repo
+        git add .
+        
+        # Check if there are changes
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Update production build from main repo [skip ci]"
+          git push
+        fi

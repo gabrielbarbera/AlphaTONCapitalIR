@@ -1,0 +1,236 @@
+absolute
+alphaton-spinner
+backdrop-blur-lg
+backdrop-blur-sm
+bg-alphaton-dark
+bg-alphaton-primary
+bg-alphaton-primary\/20
+bg-alphaton-primary\/30
+bg-black\/20
+bg-black\/30
+bg-clip-text
+bg-gradient-to-br
+bg-gradient-to-r
+bg-primary
+bg-transparent
+bg-white\/10
+bg-white\/20
+bg-white\/5
+blob-background
+blob-path
+blob-svg
+block
+border
+border-2
+border-alphaton-primary
+border-b
+border-t
+border-transparent
+border-white\/10
+border-white\/20
+border-white\/30
+bottom-0
+btn
+btn-lg
+btn-outline
+btn-primary
+btn-secondary
+btn-sm
+card
+card-body
+card-header
+card-subtitle
+card-title
+container
+content-width
+cursor-pointer
+duration-200
+fixed
+flex
+flex-1
+flex-col
+flex-row
+flex-shrink-0
+focus-visible
+focus\
+font-bold
+font-medium
+font-redhat
+font-semibold
+footer
+footer-bottom
+footer-bottom p
+footer-content
+footer-section a
+footer-section h4
+footer-section p,
+form-group
+form-input
+form-input:
+form-label
+from-alphaton-dark
+from-alphaton-primary
+gap-2
+gap-3
+gap-4
+gap-6
+gap-8
+grid
+grid-cols-1
+grid-cols-2
+grid-cols-4
+group
+h-16
+h-2
+h-6
+h-64
+h-7
+h-8
+h-full
+header
+header-content
+header.scrolled
+hidden
+hover\
+inset-0
+invisible
+items-center
+items-start
+justify-between
+justify-center
+justify-start
+leading-relaxed
+left-0
+logo
+max-w-4xl
+max-w-7xl
+mb-0
+mb-12
+mb-16
+mb-2
+mb-3
+mb-4
+mb-6
+mb-8
+min-h-\[300px\]
+min-h-screen
+mobile-menu
+mobile-menu-close
+mobile-menu-header
+mobile-menu-logo
+mobile-menu-nav
+mobile-menu-nav a
+mobile-menu-nav a.active
+mobile-menu-nav li
+mobile-menu-nav ul
+mobile-menu-overlay
+mobile-menu-overlay.active
+mobile-menu-toggle
+mobile-menu-toggle span
+mobile-menu-toggle.active span
+mobile-menu.active
+mt-0
+mt-1
+mt-2
+mt-4
+mt-6
+mt-8
+mx-auto
+nav
+nav a
+nav a.active
+nav a.active:
+nav-link
+nav-link.active
+nav-link.active:
+newsletter-form
+opacity-0
+opacity-100
+overflow-hidden
+overflow-y-auto
+p-0
+p-2
+p-4
+p-6
+p-8
+placeholder-gray-400:
+px-1
+px-2
+px-3
+px-4
+px-6
+px-8
+py-16
+py-2
+py-20
+py-3
+py-32
+py-4
+py-6
+py-8
+relative
+resize-vertical
+right-0
+rounded
+rounded-full
+rounded-lg
+rounded-md
+rounded-xl
+section
+section-lg
+section-sm
+select-none
+shadow
+shadow-lg
+space-x-3 > * + *
+space-x-4 > * + *
+space-x-8 > * + *
+space-y-1 > * + *
+space-y-2 > * + *
+space-y-3 > * + *
+space-y-4 > * + *
+space-y-5 > * + *
+space-y-6 > * + *
+sr-only
+table
+table tbody tr
+table td
+table th
+table th,
+text-2xl
+text-3xl
+text-4xl
+text-5xl
+text-6xl
+text-7xl
+text-alphaton-primary
+text-alphaton-primary\/20
+text-base
+text-center
+text-gray-300
+text-gray-400
+text-left
+text-lg
+text-primary
+text-right
+text-sm
+text-transparent
+text-white
+text-xl
+to-alphaton-accent
+to-alphaton-dark
+top-0
+transition
+transition-all
+transition-colors
+transition-transform
+via-alphaton-gray
+via-purple-500
+visible
+w-2
+w-6
+w-7
+w-auto
+w-full
+z-1000
+z-50

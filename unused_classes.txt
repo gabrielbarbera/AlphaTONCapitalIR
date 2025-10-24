@@ -1,0 +1,137 @@
+backdrop-blur-lg
+bg-alphaton-primary\/20
+bg-alphaton-primary\/30
+bg-black\/20
+bg-black\/30
+bg-primary
+bg-white\/10
+bg-white\/20
+bg-white\/5
+border-transparent
+border-white\/10
+border-white\/20
+border-white\/30
+bottom-0
+btn-lg
+btn-outline
+btn-outline:hover
+btn-primary:hover
+btn-secondary
+btn-secondary:hover
+btn-sm
+btn:focus
+card
+card-body
+card-header
+card-subtitle
+card-title
+card:hover
+content-width
+cursor-pointer
+fixed
+flex-row
+focus-visible:focus
+focus\:absolute:focus
+focus\:border-transparent:focus
+focus\:left-4:focus
+focus\:not-sr-only:focus
+focus\:outline-none:focus
+focus\:ring-2:focus
+focus\:ring-alphaton-primary:focus
+focus\:ring-inset:focus
+focus\:ring-white:focus
+focus\:top-4:focus
+footer-bottom p
+footer-section a
+footer-section a:hover
+footer-section h4
+footer-section p,
+form-input::placeholder
+form-input:focus
+form-label
+grid-cols-2
+grid-cols-4
+group:hover .group-hover\:scale-105
+group:hover .group-hover\:text-alphaton-primary
+h-16
+h-6
+header.scrolled
+hover\:bg-alphaton-primary:hover
+hover\:bg-blue-600:hover
+hover\:bg-gray-700:hover
+hover\:bg-white\/10:hover
+hover\:bg-white\/20:hover
+hover\:border-alphaton-primary\/50:hover
+hover\:scale-105:hover
+hover\:scale-110:hover
+hover\:text-alphaton-primary:hover
+hover\:text-blue-400:hover
+hover\:text-white:hover
+hover\:transform:hover
+hover\:underline:hover
+invisible
+justify-start
+left-0
+logo:hover
+mb-0
+min-h-\[300px\]
+mobile-menu-close:hover
+mobile-menu-nav a
+mobile-menu-nav a:hover,
+mobile-menu-nav a.active
+mobile-menu-nav li
+mobile-menu-nav ul
+mobile-menu-overlay
+mobile-menu-overlay.active
+mobile-menu-toggle span
+mobile-menu-toggle:hover
+mobile-menu-toggle.active span:nth-child(1)
+mobile-menu-toggle.active span:nth-child(2)
+mobile-menu-toggle.active span:nth-child(3)
+mobile-menu.active
+mt-0
+nav a
+nav a:hover,
+nav a.active
+nav a.active::after
+nav-link.active
+nav-link.active::after
+opacity-0
+opacity-100
+overflow-y-auto
+p-0
+p-2
+placeholder-gray-400::placeholder
+right-0
+section
+section-lg
+section-sm
+select-none
+shadow
+shadow-lg
+space-x-3 > * + *
+space-x-4 > * + *
+space-x-8 > * + *
+space-y-1 > * + *
+space-y-2 > * + *
+space-y-3 > * + *
+space-y-4 > * + *
+space-y-5 > * + *
+space-y-6 > * + *
+table
+table tbody tr:hover
+table td
+table th
+table th,
+text-5xl
+text-6xl
+text-7xl
+text-alphaton-primary\/20
+text-base
+text-primary
+text-right
+top-0
+transition
+visible
+w-6
+z-1000

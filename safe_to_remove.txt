@@ -1,0 +1,90 @@
+backdrop-blur-lg
+bg-alphaton-primary\/20
+bg-alphaton-primary\/30
+bg-black\/20
+bg-black\/30
+bg-primary
+bg-white\/10
+bg-white\/20
+bg-white\/5
+border-transparent
+border-white\/10
+border-white\/20
+border-white\/30
+bottom-0
+btn-lg
+btn-outline
+btn-secondary
+btn-sm
+card
+card-body
+card-header
+card-subtitle
+card-title
+content-width
+cursor-pointer
+fixed
+flex-row
+focus-visible
+focus\
+footer-bottom p
+footer-section a
+footer-section h4
+footer-section p,
+form-label
+grid-cols-2
+grid-cols-4
+h-16
+h-6
+header.scrolled
+hover\
+invisible
+justify-start
+left-0
+mb-0
+min-h-\[300px\]
+mobile-menu-nav a
+mobile-menu-nav li
+mobile-menu-nav ul
+mobile-menu-overlay
+mobile-menu-toggle span
+mt-0
+nav a
+opacity-0
+opacity-100
+overflow-y-auto
+p-0
+p-2
+right-0
+section
+section-lg
+section-sm
+select-none
+shadow
+shadow-lg
+space-x-3 > * + *
+space-x-4 > * + *
+space-x-8 > * + *
+space-y-1 > * + *
+space-y-2 > * + *
+space-y-3 > * + *
+space-y-4 > * + *
+space-y-5 > * + *
+space-y-6 > * + *
+table
+table tbody tr
+table td
+table th
+table th,
+text-5xl
+text-6xl
+text-7xl
+text-alphaton-primary\/20
+text-base
+text-primary
+text-right
+top-0
+transition
+visible
+w-6
+z-1000

@@ -15,7 +15,7 @@ const path = require("path");
 // Configuration
 const config = {
   src: {
-    css: "../src/assets/css/unified.css",
+    css: "../src/assets/css/style.css",
     html: ["../src/*.html", "../src/components/*.html"],
     js: "../src/assets/js/**/*.js",
   },
@@ -267,7 +267,7 @@ gulp.task("css", function () {
         format: "beautify",
       })
     )
-    .pipe(rename("unified.css"))
+    .pipe(rename("style.css"))
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest(config.dist.css))
     .pipe(
@@ -306,7 +306,7 @@ gulp.task("css:production", function () {
         format: "minify",
       })
     )
-    .pipe(rename({ basename: "unified", extname: ".css" }))
+    .pipe(rename({ basename: "style", extname: ".css" }))
     .pipe(gulp.dest(config.dist.css))
     .pipe(
       notify({

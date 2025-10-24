@@ -9,13 +9,13 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     
-    <!-- AlphaTON Unified CSS -->
-    <link rel="stylesheet" href="assets/css/unified.css">
+    <!-- Milligram Theme CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
     
     <!-- Preload critical fonts -->
     <link rel="preload" href="assets/fonts/RedHatDisplay-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
 </head>
-<body class="bg-alphaton-dark text-white font-redhat">
+<body>
     <!-- Blue Blob Background Animation -->
     <div class="blob-background">
         <svg class="blob-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
     </div>
     
     <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-alphaton-primary text-white px-4 py-2 rounded-md z-50">
+    <a href="#main-content" class="sr-only">
         Skip to main content
     </a>
     
@@ -41,17 +41,17 @@
     @@include('components/header.html')
     
     <!-- Main Content -->
-    <main id="main-content" class="min-h-screen">
+    <main id="main-content">
         <!-- Page Header -->
-        <section class="bg-gradient-to-br from-alphaton-dark via-alphaton-gray to-alphaton-dark py-16 pt-32">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="page-header">
+            <div class="container">
                 <div class="text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                        <span class="bg-gradient-to-r from-alphaton-primary to-purple-500 bg-clip-text text-transparent">
+                    <h1 class="page-title">
+                        <span class="title-gradient">
                             Corporate Governance
                         </span>
                     </h1>
-                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    <p class="page-subtitle">
                         Corporate governance policies, board committees, and governance structure for AlphaTON Capital Corp.
                     </p>
                 </div>
@@ -59,44 +59,50 @@
         </section>
         
         <!-- Content -->
-        <section class="py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-4xl mx-auto mb-16">
-                    <p class="text-lg text-gray-300 mb-8">
-                        The Board of Directors of AlphaTON Capital Corp. is committed to <strong class="text-alphaton-primary">integrity, transparency, and accountability</strong>. Our governance structure balances traditional institutional discipline with the realities of digital asset markets.
+        <section class="main-content-section">
+            <div class="container">
+                <div class="text-center">
+                    <p class="content-intro">
+                        The Board of Directors of AlphaTON Capital Corp. is committed to <strong class="text-primary">integrity, transparency, and accountability</strong>. Our governance structure balances traditional institutional discipline with the realities of digital asset markets.
                     </p>
                 </div>
 
                 <!-- Governance Documents -->
-                <div class="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 mb-12">
-                    <h2 class="text-2xl font-bold text-white mb-6">Governance Documents</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white/5 rounded-lg p-6 border border-white/10">
-                            <h3 class="text-lg font-semibold text-white mb-3">Code of Business Conduct</h3>
-                            <p class="text-gray-300 text-sm mb-4">
-                                Our ethical standards and business conduct guidelines.
-                            </p>
-                            <a href="#" class="text-alphaton-primary hover:text-blue-400 font-semibold transition-colors duration-200">
-                                Download PDF →
-                            </a>
+                <div class="card">
+                    <h2 class="section-title">Governance Documents</h2>
+                    <div class="row">
+                        <div class="column column-33">
+                            <div class="document-card">
+                                <h3 class="document-title">Code of Business Conduct</h3>
+                                <p class="document-description">
+                                    Our ethical standards and business conduct guidelines.
+                                </p>
+                                <a href="#" class="document-link">
+                                    Download PDF →
+                                </a>
+                            </div>
                         </div>
-                        <div class="bg-white/5 rounded-lg p-6 border border-white/10">
-                            <h3 class="text-lg font-semibold text-white mb-3">Corporate Disclosure Policy</h3>
-                            <p class="text-gray-300 text-sm mb-4">
-                                Guidelines for corporate information disclosure.
-                            </p>
-                            <a href="#" class="text-alphaton-primary hover:text-blue-400 font-semibold transition-colors duration-200">
-                                Download PDF →
-                            </a>
+                        <div class="column column-33">
+                            <div class="document-card">
+                                <h3 class="document-title">Corporate Disclosure Policy</h3>
+                                <p class="document-description">
+                                    Guidelines for corporate information disclosure.
+                                </p>
+                                <a href="#" class="document-link">
+                                    Download PDF →
+                                </a>
+                            </div>
                         </div>
-                        <div class="bg-white/5 rounded-lg p-6 border border-white/10">
-                            <h3 class="text-lg font-semibold text-white mb-3">Investor Relations Policy</h3>
-                            <p class="text-gray-300 text-sm mb-4">
-                                Our approach to investor communications and relations.
-                            </p>
-                            <a href="#" class="text-alphaton-primary hover:text-blue-400 font-semibold transition-colors duration-200">
-                                Download PDF →
-                            </a>
+                        <div class="column column-33">
+                            <div class="document-card">
+                                <h3 class="document-title">Investor Relations Policy</h3>
+                                <p class="document-description">
+                                    Our approach to investor communications and relations.
+                                </p>
+                                <a href="#" class="document-link">
+                                    Download PDF →
+                                </a>
+                            </div>
                         </div>
                         <div class="bg-white/5 rounded-lg p-6 border border-white/10">
                             <h3 class="text-lg font-semibold text-white mb-3">Audit Committee Charter</h3>

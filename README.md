@@ -10,8 +10,10 @@ A modern, responsive investor relations website for AlphaTON Capital Corp., show
 - 📊 **Stock Chart**: Real-time stock data integration with Alpha Vantage API
 - 📰 **News Feed**: RSS feed integration for company updates
 - 🔒 **Secure**: Static site with no server-side code
-- ⚡ **Fast**: Optimized CSS (21KB), lazy-loaded images
+- ⚡ **Fast**: Optimized CSS (21KB minified), lazy-loaded images
 - 🌐 **Cross-Browser**: Autoprefixed CSS for compatibility
+- 🚀 **Automated Build**: Gulp-based build system with CSS optimization
+- 📦 **Production Ready**: Optimized for both GitHub Pages and Notified deployment
 
 ## 🏗️ Project Structure
 
@@ -30,7 +32,7 @@ AlphaTonIR/
 │   │   ├── header.html    # Navigation header
 │   │   └── footer.html    # Site footer
 │   └── assets/            # All assets
-│       ├── css/           # Stylesheets
+│       ├── css/           # Stylesheets (6,734 lines)
 │       ├── js/            # JavaScript files
 │       ├── img/           # Images
 │       ├── fonts/         # Web fonts
@@ -38,10 +40,29 @@ AlphaTonIR/
 │       └── pdf/           # PDF documents
 ├── build/                 # Build configuration
 │   ├── gulpfile.js       # Gulp build tasks
-│   ├── package.json      # Dependencies
-│   └── setup scripts     # Installation scripts
+│   ├── package.json      # Build dependencies
+│   ├── package-lock.json # Locked dependencies
+│   ├── purgecss.config.js # CSS purge configuration
+│   ├── setup.bat         # Windows setup script
+│   └── setup.sh          # Unix/Mac setup script
 ├── docs/                  # Documentation
-└── dist/                  # Build output (generated)
+│   ├── BUILD_SYSTEM.md   # Build system documentation
+│   ├── DEVELOPMENT.md    # Development guide
+│   ├── STOCK_CHART_README.md # Stock chart setup
+│   ├── notified_html_guidelines.md # Notified compliance
+│   └── [other docs]      # Additional documentation
+├── backup/               # Backup files
+├── dist/                 # Build output (generated)
+│   ├── *.html           # All HTML pages
+│   └── assets/          # Optimized assets
+│       ├── css/         # Minified CSS (21KB)
+│       ├── js/          # JavaScript files
+│       ├── img/         # Images
+│       ├── fonts/       # Fonts
+│       ├── icons/       # Icons
+│       └── pdf/         # PDFs
+├── package.json          # Root package configuration
+└── README.md            # This file
 ```
 
 ## 🚀 Quick Start
@@ -58,32 +79,38 @@ AlphaTonIR/
 git clone https://github.com/[username]/AlphaTonIR.git
 cd AlphaTonIR
 
-# Install dependencies
+# Install build dependencies
 npm run install-deps
-# or
+# or manually
 cd build && npm install
 ```
 
 ### Development
 
 ```bash
-# Development build
+# Development build (creates dist/ folder)
 npm run dev
 
 # Watch mode (auto-rebuild on changes)
 npm run watch
 
-# Production build
+# Development with live server
+npm run dev:serve
+
+# Production build (optimized for deployment)
 npm run build:production
 ```
 
 ### Testing Locally
 
 ```bash
-# After building, open in browser
-open dist/index.html
-# or
+# After building, test the production site
+npm run build:production
+
+# Open dist/index.html in browser
+# or serve locally
 cd dist && python -m http.server 8000
+# Visit http://localhost:8000
 ```
 
 ## 📦 Build System
@@ -94,51 +121,62 @@ From **root directory**:
 ```bash
 npm run install-deps          # Install build dependencies
 npm run dev                   # Development build
-npm run watch                 # Watch mode
-npm run build:production      # Production build
+npm run dev:serve             # Development build with live server
+npm run watch                 # Watch mode (auto-rebuild)
+npm run build:production      # Production build (optimized)
 npm run clean                 # Clean dist/ directory
+npm run serve                 # Serve dist/ folder locally
 ```
 
 From **build directory**:
 ```bash
 cd build
 npm run dev                   # Development build
+npm run dev:serve             # Development build with live server
 npm run watch                 # Watch mode
 npm run build:production      # Production build
+npm run serve                 # Serve locally
+npm run clean                 # Clean dist/ directory
 ```
 
 ### Build Features
 
-- ✅ **CSS Optimization**: 89% size reduction (6,734 lines → 21KB)
+- ✅ **CSS Optimization**: 89% size reduction (6,734 lines → 21KB minified)
+- ✅ **CSS Purging**: Removes unused CSS classes automatically
 - ✅ **Autoprefixer**: Cross-browser compatibility
 - ✅ **Minification**: Production-ready files
 - ✅ **Source Maps**: Development debugging
 - ✅ **Asset Management**: Automatic copying
 - ✅ **File Watching**: Auto-rebuild on changes
+- ✅ **Error Handling**: Graceful error messages
+- ✅ **Browser Sync**: Live reload during development
 
 ## 🌐 Deployment
 
-### GitHub Pages (Automated)
+### GitHub Pages (Manual Setup Required)
 
-The site automatically deploys to GitHub Pages on every push to `main`:
+**Note**: GitHub Actions workflow needs to be created for automated deployment.
 
-1. **Push to main branch**:
-   ```bash
-   git add .
-   git commit -m "Update site"
-   git push origin main
-   ```
+**Manual Setup**:
+1. Go to Repository → Settings → Pages
+2. Source: Select "Deploy from a branch"
+3. Branch: Select `main` / `(root)`
 
-2. **Monitor deployment**:
-   - Go to **Actions** tab
-   - Watch "Deploy to GitHub Pages" workflow
+**Manual Deployment**:
+```bash
+# Build production site
+npm run build:production
 
-3. **Live site**:
-   ```
-   https://[username].github.io/AlphaTonIR/
-   ```
+# Commit and push dist/ folder
+git add dist/
+git commit -m "Update production build"
+git push origin main
+```
 
-See [GitHub Pages Deployment Guide](docs/GITHUB_PAGES_DEPLOYMENT.md) for details.
+**Live site**:
+```
+https://[username].github.io/AlphaTonIR/
+```
 
 ### Notified Platform
 
@@ -151,7 +189,7 @@ For official IR website deployment:
 
 2. **Test locally**:
    - Open `dist/index.html`
-   - Verify all functionality
+   - Verify all functionality works
 
 3. **Create ZIP**:
    - Zip contents of `dist/` folder (not the folder itself)
@@ -159,7 +197,7 @@ For official IR website deployment:
 4. **Upload to Notified**:
    - Submit ZIP through Notified platform
 
-See [Build System Documentation](docs/BUILD_SYSTEM.md) for details.
+**Important**: The same `dist/` folder works for both GitHub Pages and Notified deployment.
 
 ## 🛠️ Technologies
 
@@ -169,10 +207,12 @@ See [Build System Documentation](docs/BUILD_SYSTEM.md) for details.
 - **JavaScript**: Vanilla ES6+
 
 ### Build Tools
-- **Gulp**: Task automation
+- **Gulp**: Task automation and file processing
 - **Autoprefixer**: CSS vendor prefixes
 - **CleanCSS**: CSS minification
 - **PurgeCSS**: Unused CSS removal
+- **Browser Sync**: Live reload during development
+- **Source Maps**: Development debugging
 
 ### APIs
 - **Alpha Vantage**: Stock market data
@@ -201,10 +241,12 @@ See [Build System Documentation](docs/BUILD_SYSTEM.md) for details.
 
 ## 📊 Performance
 
-- **CSS**: 21KB (minified)
+- **CSS**: 21KB minified (89% reduction from 6,734 lines)
+- **Build Time**: < 2 seconds
 - **First Paint**: < 1s
 - **Time to Interactive**: < 2s
 - **Lighthouse Score**: 95+
+- **File Optimization**: Automatic asset compression
 
 ## 🔧 Development
 
@@ -226,7 +268,7 @@ See [Build System Documentation](docs/BUILD_SYSTEM.md) for details.
 
 1. Edit `src/assets/css/unified.css`
 2. Run watch mode: `npm run watch`
-3. Changes auto-rebuild
+3. Changes auto-rebuild and reload in browser
 
 ### Adding Assets
 
@@ -234,14 +276,15 @@ See [Build System Documentation](docs/BUILD_SYSTEM.md) for details.
 - **Icons**: `src/assets/icons/`
 - **Fonts**: `src/assets/fonts/`
 - **PDFs**: `src/assets/pdf/`
+- **JavaScript**: `src/assets/js/`
 
 ## 📚 Documentation
 
-- [Build System Guide](docs/BUILD_SYSTEM.md)
-- [GitHub Pages Deployment](docs/GITHUB_PAGES_DEPLOYMENT.md)
-- [Development Guide](docs/DEVELOPMENT.md)
-- [Stock Chart Setup](docs/STOCK_CHART_README.md)
-- [Notified HTML Guidelines](docs/notified_html_guidelines.md)
+- [Build System Guide](docs/BUILD_SYSTEM.md) - Complete build system documentation
+- [Development Guide](docs/DEVELOPMENT.md) - Development setup and workflow
+- [Stock Chart Setup](docs/STOCK_CHART_README.md) - Alpha Vantage API integration
+- [Notified HTML Guidelines](docs/notified_html_guidelines.md) - Compliance requirements
+- [GitHub Pages Deployment](docs/GITHUB_PAGES_DEPLOYMENT.md) - Deployment guide
 
 ## 🤝 Contributing
 
@@ -250,9 +293,11 @@ This is a proprietary project for AlphaTON Capital Corp. For internal team membe
 1. Create feature branch: `git checkout -b feature/your-feature`
 2. Make changes in `src/` directory
 3. Test locally: `npm run dev`
-4. Commit changes: `git commit -m "feat: your feature"`
-5. Push branch: `git push origin feature/your-feature`
-6. Create pull request
+4. Run production build: `npm run build:production`
+5. Test production build: Open `dist/index.html`
+6. Commit changes: `git commit -m "feat: your feature"`
+7. Push branch: `git push origin feature/your-feature`
+8. Create pull request
 
 ## 📄 License
 
@@ -260,9 +305,10 @@ This project is proprietary to AlphaTON Capital Corp. All rights reserved.
 
 ## 🔗 Links
 
-- **Live Site**: [GitHub Pages URL]
-- **Official IR**: [Notified URL]
+- **Live Site**: [GitHub Pages URL] (setup required)
+- **Official IR**: [Notified URL] (manual deployment)
 - **Company Website**: https://alphatoncapital.com
+- **Repository**: [GitHub Repository URL]
 
 ## 📞 Support
 
@@ -276,4 +322,6 @@ For questions or issues:
 
 **Last Updated**: January 2025  
 **Version**: 1.0.0  
-**Status**: ✅ Production Ready
+**Status**: ✅ Production Ready  
+**Build System**: ✅ Configured  
+**Deployment**: ⚠️ Manual Setup Required
